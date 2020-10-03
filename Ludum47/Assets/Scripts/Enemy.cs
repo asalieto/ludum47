@@ -6,7 +6,6 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public Action<int> OnDie;
-    public bool TEST_Die = false;
 
     public int EnemyID;
 
@@ -56,7 +55,7 @@ public class Enemy : MonoBehaviour
 
     public void ResetEnemy()
     {
-        TEST_Die = false;
+        m_canShoot = true;
         m_alive = true;
         m_isShooting = false;
         transform.position = m_originPos;
@@ -81,11 +80,6 @@ public class Enemy : MonoBehaviour
         if(m_alive)
         {
             TryShootEnemy();
-        }
-
-        if (TEST_Die)
-        {
-            Die();
         }
     }
 
@@ -190,6 +184,8 @@ public class Enemy : MonoBehaviour
     
     private void Shoot()
     {
+        AudioManager.Instance.PlaySFX(AudioManager.SFXType.Projectile);
+
         GameObject bullet = GameObject.Instantiate(m_bulletPrefab, this.transform.position + (transform.up * m_bulletSeparationMultiplier), Quaternion.identity);
         bullet.GetComponent<Bullet>().Init((m_player.transform.position - transform.position).normalized);
     }

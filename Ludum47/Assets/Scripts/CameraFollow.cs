@@ -8,14 +8,12 @@ public class CameraFollow : MonoBehaviour
     GameObject player;
     public float speed = 5;
 
-    // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Vector2 auxPos = new Vector2(0,0);
         auxPos.x = Mathf.Lerp(transform.position.x, player.transform.position.x, Time.deltaTime*speed);

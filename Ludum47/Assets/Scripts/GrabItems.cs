@@ -10,23 +10,21 @@ public class GrabItems : MonoBehaviour
     Animator playerAnim;
     KeyCode grabItemKey = KeyCode.E;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         playerAnim = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(overlappingItem != null && heldItem == null)
         {
-            Debug.Log("IN TRIGGER");
             if (Input.GetKeyDown(grabItemKey))
             {
                 heldItem = overlappingItem;
                 heldItem.GetComponent<Collider2D>().enabled = false;
                 Debug.Log("GRAB");
+                AudioManager.Instance.PlaySFX(AudioManager.SFXType.Pickup, true);
 
                 heldItem.transform.SetParent(transform);
                 playerAnim.SetTrigger("Grab");
@@ -43,6 +41,8 @@ public class GrabItems : MonoBehaviour
                 heldItem = null;
                 playerAnim.SetTrigger("Grab");
                 Debug.Log("RELEASE");
+
+                AudioManager.Instance.PlaySFX(AudioManager.SFXType.Cat, true);
             }
         }
     }

@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 2963705320057778856}
   - component: {fileID: 2158905083710667924}
   - component: {fileID: 7912354477783516745}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 760007448452979856, guid: 2b5bb4741bbace545b932794b2ec0480, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c2badd5a2b59d44f8adb1b45652910a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 1.7
   m_bulletPrefab: {fileID: 6862636990602757244, guid: 8416b56ce89e2374394e80559d024551, type: 3}
   m_bulletInterval: 0.2
   m_bulletSeparationMultiplier: 0.02

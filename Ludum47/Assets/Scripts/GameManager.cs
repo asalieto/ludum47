@@ -1,15 +1,13 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    public Door CurrentPortal;
-    public int m_currentLevel = 0;
+    public Door CurrentPortal { get; set; }
 
+    private int m_currentLevel = 0;
     private List<int> m_checkPoints;
 
-    
     private void Start()
     {
         // Create check point list
@@ -19,19 +17,19 @@ public class GameManager : Singleton<GameManager>
         m_checkPoints.Add(2);
         m_checkPoints.Add(5);
         // ........
+
+        AudioManager.Instance.PlayAudio(0, true);
     }
     
     public void LoadNextLevel()
     {
         m_currentLevel++;
         SceneManager.LoadScene("Level" + m_currentLevel.ToString(), LoadSceneMode.Single);
-        //Application.LoadLevel("Level" + m_currentLevel.ToString());
     }
 
     public void Retry()
     {
-
-        if (m_currentLevel > m_checkPoints[m_checkPoints.Count-1])
+        if (m_currentLevel >= m_checkPoints[m_checkPoints.Count-1])
         {
             m_currentLevel = m_checkPoints[m_checkPoints.Count - 1];
         }
@@ -39,17 +37,17 @@ public class GameManager : Singleton<GameManager>
         {
             int iter = 0;
 
-            while (m_currentLevel > m_checkPoints[iter])
+            while (m_currentLevel >= m_checkPoints[iter])
             {
                 iter++;
             }
 
             iter--;
 
-            m_currentLevel = m_checkPoints[iter] - 1;
+            m_currentLevel = m_checkPoints[iter];
         }
 
+        m_currentLevel--;
         LoadNextLevel();
     }
-
 }
