@@ -4,6 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Enemy
+  - Obstacle
   - ObjectGrab
   layers:
   - Default
@@ -14,10 +16,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Background
+  - Wall
+  - Player
+  - Enemy
   - 
   - 
   - 
