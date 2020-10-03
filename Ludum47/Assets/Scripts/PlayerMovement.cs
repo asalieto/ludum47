@@ -20,26 +20,23 @@ public class PlayerMovement : MonoBehaviour
 
         Vector2 auxVel = new Vector2(0.0f, 0.0f);
 
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             auxVel.y += speed;
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
             auxVel.y -= speed;
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             auxVel.x += speed;
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             auxVel.x -= speed;
         }
 
         playerRB.velocity = auxVel;
-        /*transform.position.Set(transform.position.x + auxVel.x * Time.deltaTime,
-                               transform.position.y + auxVel.y * Time.deltaTime,
-                               transform.position.z);*/
     }
 }
