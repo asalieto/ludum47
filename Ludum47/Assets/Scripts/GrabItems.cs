@@ -7,6 +7,7 @@ public class GrabItems : MonoBehaviour
 
     GameObject heldItem = null;
     GameObject overlappingItem = null;
+    Animator playerAnim;
     KeyCode grabItemKey = KeyCode.E;
 
     void Update()
@@ -20,12 +21,12 @@ public class GrabItems : MonoBehaviour
                 Debug.Log("GRAB");
                 AudioManager.Instance.PlaySFX(AudioManager.SFXType.Pickup, true);
 
-                heldItem.transform.SetParent(this.transform);
+                heldItem.transform.SetParent(transform);
+                playerAnim.SetTrigger("Grab");
             }
         }
         else if (heldItem != null)
         {
-            heldItem.transform.position = transform.position;
             if (Input.GetKeyDown(grabItemKey))
             {
                 var currentRoomTransform = GameManager.Instance.CurrentPortal.GetCurrentRoomGO().transform;
@@ -33,6 +34,7 @@ public class GrabItems : MonoBehaviour
 
                 heldItem.GetComponent<Collider2D>().enabled = true;
                 heldItem = null;
+                playerAnim.SetTrigger("Grab");
                 Debug.Log("RELEASE");
 
                 AudioManager.Instance.PlaySFX(AudioManager.SFXType.Cat, true);
