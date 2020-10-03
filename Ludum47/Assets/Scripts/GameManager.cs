@@ -39,7 +39,7 @@ public class GameManager : Singleton<GameManager>
         {
             int iter = 0;
 
-            while (m_currentLevel > m_checkPoints[iter])
+            while (m_currentLevel >= m_checkPoints[iter])
             {
                 iter++;
             }
