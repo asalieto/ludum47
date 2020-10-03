@@ -34,20 +34,21 @@ public class HealthManager : MonoBehaviour
     {
         currentHealth -= damage;
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && alive)
         {
-            alive = false;
-
             if(tag == "Player")
             {
                 Debug.Log("Player Dead!");
+                GameObject GameOver = (GameObject)Resources.Load("GameOverCanvas");
+                GameObject.Instantiate(GameOver);
             }
             else
             {
                 GetComponent<Enemy>().Die();
                 Debug.Log("Enemy Dead!");
             }
-            
+
+            alive = false;
         }
     }
 }

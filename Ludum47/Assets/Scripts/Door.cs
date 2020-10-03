@@ -36,6 +36,12 @@ public class Door : MonoBehaviour
     private void TransportToNextRoom()
     {
         int previousRoom = m_currentRoom;
+        GameObject[] bullets =  GameObject.FindGameObjectsWithTag("Bullet");
+
+        for(int i = 0; i < bullets.Length; ++i)
+        {
+            Destroy(bullets[i]);
+        }
 
         m_currentRoom = CheckNextRoom();
 
