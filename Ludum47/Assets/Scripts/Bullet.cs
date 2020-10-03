@@ -2,6 +2,8 @@
 
 public class Bullet : MonoBehaviour
 {
+    
+
     public void Init(Vector3 direction)
     {
         m_currentLifeTime = 0f;
@@ -29,10 +31,21 @@ public class Bullet : MonoBehaviour
             DestroyBullet();
         }
 
-        if (collision.CompareTag("Enemy"))
+        if (m_isEnemyBullet)
         {
-            collision.GetComponent<Enemy>().Die();
-            DestroyBullet();
+            if (collision.CompareTag("Player"))
+            {
+                collision.gameObject.GetComponent<HealthManager>().receiveDamage(1);
+                DestroyBullet();
+            }
+        }
+        else
+        { 
+            if (collision.CompareTag("Enemy"))
+            {
+                collision.gameObject.GetComponent<HealthManager>().receiveDamage(1);
+                DestroyBullet();
+            }
         }
     }
 
@@ -49,4 +62,6 @@ public class Bullet : MonoBehaviour
     private float m_lifeTime = 1f;
     [SerializeField]
     private Rigidbody2D m_rb = null;
+    [SerializeField]
+    private bool m_isEnemyBullet;
 }

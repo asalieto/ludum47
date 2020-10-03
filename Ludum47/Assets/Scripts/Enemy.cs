@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,15 +12,22 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private float m_speed = 1.5f;
     [SerializeField] private float m_destinationOffset = 0.05f;
-    [SerializeField] private bool m_circular;
+    [SerializeField] private float m_distanceSeePlayer = 1.5f;
+    [SerializeField] private float m_TimeBetweenShoot = 2f;
+    [SerializeField] private bool  m_circular;
     [SerializeField] private List<Transform> m_waypoints = null;
+    [SerializeField] private float m_bulletSeparationMultiplier = 0.02f;
+    [SerializeField] private GameObject m_bulletPrefab = null;
 
+    private GameObject m_player;
     private Vector2 m_originPos;
     private bool m_alive;
 
     private float m_waypointRadius = 0.15f;
     private int m_destinationIndex = 0;
     private bool m_foward;
+    private bool m_canShoot = true;
+    private bool m_isShooting = false;
 
     void Start()
     {
@@ -28,14 +36,14 @@ public class Enemy : MonoBehaviour
         m_alive = true;
 
         m_originPos = transform.position;
-
+        m_player = GameObject.FindGameObjectWithTag("Player");
         this.gameObject.SetActive(true);
     }
 
     public void Die()
     {
         m_alive = false;
-        OnDie(EnemyID);
+        OnDie?.Invoke(EnemyID);
 
         this.gameObject.SetActive(false);
     }
@@ -56,7 +64,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (m_alive && m_waypoints != null && m_waypoints.Count > 0)
+        if (m_alive && m_waypoints != null && m_waypoints.Count > 0 && !m_isShooting)
         {
             Move();
 
@@ -64,6 +72,11 @@ public class Enemy : MonoBehaviour
             {
                 GoToNextWaypoint();
             }
+        }
+
+        if(m_alive)
+        {
+            TryShootEnemy();
         }
 
         if (TEST_Die)
@@ -126,5 +139,54 @@ public class Enemy : MonoBehaviour
             }
         }
 #endif
+    }
+
+    private void TryShootEnemy()
+    {
+        if(m_canShoot)
+        {
+            if(CheckPlayerInRange())
+            {
+                m_canShoot = false;
+                m_isShooting = true;
+                Shoot();
+
+                StartCoroutine("ShootDelay");
+            }
+            else
+            {
+                m_isShooting = false;
+            }
+        }
+    }
+
+    private bool CheckPlayerInRange()
+    {
+        if(Vector2.Distance(m_player.transform.position, transform.position ) < m_distanceSeePlayer)
+        {
+            int layerMask = LayerMask.GetMask("Enemy");
+            layerMask = ~layerMask;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, m_player.transform.position - transform.position, m_distanceSeePlayer, layerMask);
+
+            if(hit && hit.transform.tag == "Player")
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private IEnumerator ShootDelay()
+    {
+        yield return new WaitForSeconds(m_TimeBetweenShoot);
+
+        m_canShoot = true;
+    }
+    
+    private void Shoot()
+    {
+        GameObject bullet = GameObject.Instantiate(m_bulletPrefab, this.transform.position + (transform.up * m_bulletSeparationMultiplier), Quaternion.identity);
+        bullet.GetComponent<Bullet>().Init((m_player.transform.position - transform.position).normalized);
     }
 }

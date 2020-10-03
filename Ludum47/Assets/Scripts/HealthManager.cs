@@ -6,7 +6,7 @@ public class HealthManager : MonoBehaviour
 {
 
     public int maxHealth = 3;
-    int currentHealth;
+    public int currentHealth;
     bool alive = true;
     Vector3 initialPosition;
 
@@ -16,15 +16,6 @@ public class HealthManager : MonoBehaviour
     {
         currentHealth = maxHealth;
         initialPosition = transform.position;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (currentHealth <= 0)
-        {
-            alive = false;
-        }
     }
 
     void Respawn()
@@ -42,5 +33,21 @@ public class HealthManager : MonoBehaviour
     public void receiveDamage(int damage)
     {
         currentHealth -= damage;
+
+        if (currentHealth <= 0)
+        {
+            alive = false;
+
+            if(tag == "Player")
+            {
+                Debug.Log("Player Dead!");
+            }
+            else
+            {
+                GetComponent<Enemy>().Die();
+                Debug.Log("Enemy Dead!");
+            }
+            
+        }
     }
 }
