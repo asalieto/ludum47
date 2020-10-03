@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4778443639745806200}
   - component: {fileID: 4778443639745806203}
   - component: {fileID: 4552538233743437008}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -122,8 +122,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90168589372412c4fbf1bccd34fc99b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Alive: 1
+  TEST_Die: 0
+  EnemyID: 0
   m_speed: 1.5
   m_destinationOffset: 0.05
+  m_distanceSeePlayer: 1.5
+  m_TimeBetweenShoot: 1.5
   m_circular: 0
   m_waypoints: []
+  m_bulletSeparationMultiplier: 0.02
+  m_bulletPrefab: {fileID: 6862636990602757244, guid: 0251206516ade1e448b3d985db378955, type: 3}

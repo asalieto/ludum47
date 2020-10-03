@@ -18,15 +18,6 @@ public class HealthManager : MonoBehaviour
         initialPosition = transform.position;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (currentHealth <= 0)
-        {
-            alive = false;
-        }
-    }
-
     void Respawn()
     {
         transform.position = initialPosition;
@@ -42,5 +33,11 @@ public class HealthManager : MonoBehaviour
     public void receiveDamage(int damage)
     {
         currentHealth -= damage;
+
+        if (currentHealth <= 0)
+        {
+            alive = false;
+            Debug.Log("Player Dead!");
+        }
     }
 }
