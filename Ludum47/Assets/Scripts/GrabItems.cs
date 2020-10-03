@@ -10,6 +10,11 @@ public class GrabItems : MonoBehaviour
     Animator playerAnim;
     KeyCode grabItemKey = KeyCode.E;
 
+    private void Start()
+    {
+        playerAnim = GetComponent<Animator>();
+    }
+
     void Update()
     {
         if(overlappingItem != null && heldItem == null)
