@@ -43,7 +43,8 @@ public class Bullet : MonoBehaviour
         { 
             if (collision.CompareTag("Enemy"))
             {
-                collision.GetComponent<Enemy>().Die();
+                collision.gameObject.GetComponent<HealthManager>().receiveDamage(1);
+                DestroyBullet();
             }
         }
     }

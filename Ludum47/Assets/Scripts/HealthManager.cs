@@ -37,7 +37,17 @@ public class HealthManager : MonoBehaviour
         if (currentHealth <= 0)
         {
             alive = false;
-            Debug.Log("Player Dead!");
+
+            if(tag == "Player")
+            {
+                Debug.Log("Player Dead!");
+            }
+            else
+            {
+                GetComponent<Enemy>().Die();
+                Debug.Log("Enemy Dead!");
+            }
+            
         }
     }
 }

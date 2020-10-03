@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float m_destinationOffset = 0.05f;
     [SerializeField] private float m_distanceSeePlayer = 1.5f;
     [SerializeField] private float m_TimeBetweenShoot = 2f;
-    [SerializeField] private bool m_circular;
+    [SerializeField] private bool  m_circular;
     [SerializeField] private List<Transform> m_waypoints = null;
     [SerializeField] private float m_bulletSeparationMultiplier = 0.02f;
     [SerializeField] private GameObject m_bulletPrefab = null;
