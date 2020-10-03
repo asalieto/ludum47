@@ -75,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
 
         var bullet = Instantiate(m_bulletPrefab, transform.position + new Vector3(m_lastVelocityDirection.x, m_lastVelocityDirection.y, 0) * m_bulletSeparationMultiplier, Quaternion.AngleAxis(angle, Vector3.forward));
         bullet.GetComponent<Bullet>().Init(m_lastVelocityDirection.normalized);
+        PlayerAnim.SetTrigger("Shoot");
     }
 
     private Vector2 m_lastVelocityDirection = Vector2.down;
