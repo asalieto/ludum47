@@ -43,8 +43,7 @@ public class Bullet : MonoBehaviour
         { 
             if (collision.CompareTag("Enemy"))
             {
-            collision.GetComponent<Enemy>().Die();
-                DestroyBullet();
+                collision.GetComponent<Enemy>().Die();
             }
         }
     }

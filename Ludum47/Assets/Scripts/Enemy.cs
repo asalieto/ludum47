@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         m_alive = false;
-        OnDie(EnemyID);
+        OnDie?.Invoke(EnemyID);
 
         this.gameObject.SetActive(false);
     }
