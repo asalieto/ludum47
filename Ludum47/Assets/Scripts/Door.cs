@@ -10,7 +10,8 @@ public class Door : MonoBehaviour
     public DoorCombination[] Combinations;
     public Transform StartPositionTransform;
 
-    private int m_currentRoom = 0;
+    private int m_currentRoom = 0; 
+    private int m_previousRoom = 0;
     private List<int> m_enemiesDieOrdered = new List<int>();
 
     private void Start()
@@ -35,34 +36,15 @@ public class Door : MonoBehaviour
 
     private void TransportToNextRoom()
     {
-        int previousRoom = m_currentRoom;
-        GameObject[] bullets =  GameObject.FindGameObjectsWithTag("Bullet");
+        RoomSpecificRoot[m_previousRoom].SetActive(false);
+        RoomSpecificRoot[m_currentRoom].SetActive(true);
 
-        for(int i = 0; i < bullets.Length; ++i)
+        for (int i = 0; i < Enemies.Length; ++i)
         {
-            Destroy(bullets[i]);
+            Enemies[i].ResetEnemy();
         }
 
-            m_currentRoom = CheckNextRoom();
-
-        Debug.Log("TELEPORT TO ROOM: " + m_currentRoom);
-        if(m_currentRoom == -1)
-        {
-            //Level win
-            GameManager.Instance.LoadNextLevel();
-        }
-        else
-        {
-            RoomSpecificRoot[previousRoom].SetActive(false);
-            RoomSpecificRoot[m_currentRoom].SetActive(true);
-
-            for (int i = 0; i < Enemies.Length; ++i)
-            {
-                Enemies[i].ResetEnemy();
-            }
-
-            m_enemiesDieOrdered.Clear();
-        }
+        m_enemiesDieOrdered.Clear();
     }
     
     private int CheckNextRoom()
@@ -171,13 +153,34 @@ public class Door : MonoBehaviour
     {
         if(col.tag == "Player")
         {
-            TransportToNextRoom();
-
-            //This should be done on the player
-            col.gameObject.transform.position = StartPositionTransform.position;
+            UsePortal(col.gameObject);
         }
     }
 
+    private void UsePortal(GameObject playerGO)
+    {
+        m_previousRoom = m_currentRoom;
+        GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
+
+        for (int i = 0; i < bullets.Length; ++i)
+        {
+            Destroy(bullets[i]);
+        }
+
+        m_currentRoom = CheckNextRoom();
+
+        if (m_currentRoom == -1)
+        {
+            //Level win
+            GameManager.Instance.LoadNextLevel();
+        }
+        else
+        {
+            //This should be done on the player
+            playerGO.gameObject.transform.position = StartPositionTransform.position;
+            TransportToNextRoom();
+        }
+    }
 }
 
 

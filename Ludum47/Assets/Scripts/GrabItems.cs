@@ -9,18 +9,10 @@ public class GrabItems : MonoBehaviour
     GameObject overlappingItem = null;
     KeyCode grabItemKey = KeyCode.E;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if(overlappingItem != null && heldItem == null)
         {
-            Debug.Log("IN TRIGGER");
             if (Input.GetKeyDown(grabItemKey))
             {
                 heldItem = overlappingItem;
