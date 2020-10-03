@@ -18,6 +18,7 @@ public class GrabItems : MonoBehaviour
                 heldItem = overlappingItem;
                 heldItem.GetComponent<Collider2D>().enabled = false;
                 Debug.Log("GRAB");
+                AudioManager.Instance.PlaySFX(AudioManager.SFXType.Pickup, true);
 
                 heldItem.transform.SetParent(this.transform);
             }
@@ -33,6 +34,8 @@ public class GrabItems : MonoBehaviour
                 heldItem.GetComponent<Collider2D>().enabled = true;
                 heldItem = null;
                 Debug.Log("RELEASE");
+
+                AudioManager.Instance.PlaySFX(AudioManager.SFXType.Cat, true);
             }
         }
     }

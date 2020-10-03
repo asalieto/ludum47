@@ -169,6 +169,8 @@ public class Door : MonoBehaviour
 
         m_currentRoom = CheckNextRoom();
 
+        AudioManager.Instance.PlaySFX(AudioManager.SFXType.Portal);
+
         if (m_currentRoom == -1)
         {
             //Level win

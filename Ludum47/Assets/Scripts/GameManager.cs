@@ -3,12 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    public Door CurrentPortal;
-    public int m_currentLevel = 0;
+    public Door CurrentPortal { get; set; }
 
+    private int m_currentLevel = 0;
     private List<int> m_checkPoints;
 
-    
     private void Start()
     {
         // Create check point list
@@ -18,6 +17,8 @@ public class GameManager : Singleton<GameManager>
         m_checkPoints.Add(2);
         m_checkPoints.Add(5);
         // ........
+
+        AudioManager.Instance.PlayAudio(0, true);
     }
     
     public void LoadNextLevel()
@@ -28,7 +29,6 @@ public class GameManager : Singleton<GameManager>
 
     public void Retry()
     {
-
         if (m_currentLevel > m_checkPoints[m_checkPoints.Count-1])
         {
             m_currentLevel = m_checkPoints[m_checkPoints.Count - 1];
