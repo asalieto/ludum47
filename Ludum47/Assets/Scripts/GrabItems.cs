@@ -32,6 +32,7 @@ public class GrabItems : MonoBehaviour
         }
         else if (heldItem != null)
         {
+            heldItem.transform.position = transform.position;
             if (Input.GetKeyDown(grabItemKey))
             {
                 var currentRoomTransform = GameManager.Instance.CurrentPortal.GetCurrentRoomGO().transform;
