@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
@@ -25,7 +24,6 @@ public class GameManager : Singleton<GameManager>
     {
         m_currentLevel++;
         SceneManager.LoadScene("Level" + m_currentLevel.ToString(), LoadSceneMode.Single);
-        //Application.LoadLevel("Level" + m_currentLevel.ToString());
     }
 
     public void Retry()
@@ -51,5 +49,4 @@ public class GameManager : Singleton<GameManager>
 
         LoadNextLevel();
     }
-
 }

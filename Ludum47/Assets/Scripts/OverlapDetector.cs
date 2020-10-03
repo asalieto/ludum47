@@ -16,10 +16,6 @@ public class OverlapDetector : MonoBehaviour
 
     void Update()
     {
-        if (active)
-        {
-           // Debug.Log("ACTIVE");
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
