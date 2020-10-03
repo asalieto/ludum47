@@ -34,7 +34,11 @@ public class Enemy : MonoBehaviour
         m_foward = true;
         m_alive = true;
 
-        m_originPos = transform.position;
+        if (m_waypoints != null && m_waypoints.Count > 0)
+        {
+            transform.position = m_waypoints[m_destinationIndex].position;
+        }
+
         m_player = GameObject.FindGameObjectWithTag("Player");
         this.gameObject.SetActive(true);
     }
