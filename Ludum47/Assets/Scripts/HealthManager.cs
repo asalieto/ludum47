@@ -6,7 +6,7 @@ public class HealthManager : MonoBehaviour
 {
 
     public int maxHealth = 3;
-    int currentHealth;
+    public int currentHealth;
     bool alive = true;
     Vector3 initialPosition;
 
