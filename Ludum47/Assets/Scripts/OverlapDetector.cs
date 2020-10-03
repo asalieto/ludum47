@@ -18,7 +18,7 @@ public class OverlapDetector : MonoBehaviour
     {
         if (active)
         {
-            Debug.Log("ACTIVE");
+           // Debug.Log("ACTIVE");
         }
     }
 
