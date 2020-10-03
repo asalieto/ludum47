@@ -29,7 +29,7 @@ public class GameManager : Singleton<GameManager>
 
     public void Retry()
     {
-        if (m_currentLevel > m_checkPoints[m_checkPoints.Count-1])
+        if (m_currentLevel >= m_checkPoints[m_checkPoints.Count-1])
         {
             m_currentLevel = m_checkPoints[m_checkPoints.Count - 1];
         }
@@ -44,9 +44,10 @@ public class GameManager : Singleton<GameManager>
 
             iter--;
 
-            m_currentLevel = m_checkPoints[iter] - 1;
+            m_currentLevel = m_checkPoints[iter];
         }
 
+        m_currentLevel--;
         LoadNextLevel();
     }
 }
