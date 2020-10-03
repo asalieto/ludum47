@@ -10,6 +10,14 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 
+ludum47-game/Library/
+ludum47-game/Temp/
+ludum47-game/Obj/
+ludum47-game/Build/
+ludum47-game/Builds/
+ludum47-game/Logs/
+ludum47-game/MemoryCaptures/
+
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 
