@@ -37,7 +37,7 @@ public class Door : MonoBehaviour
     {
         int previousRoom = m_currentRoom;
 
-        m_currentRoom = CheckNextRoom();
+            m_currentRoom = CheckNextRoom();
 
         Debug.Log("TELEPORT TO ROOM: " + m_currentRoom);
         if(m_currentRoom == -1)
@@ -124,14 +124,17 @@ public class Door : MonoBehaviour
                     bool combiValid = true;
                     for (int j = 0; j < Switches.Length; j++)
                     {
-                        if (Switches[j].IsActive() && Switches[j].id == Combinations[i].CodeSwitchOpen[combiIter])
+                        if(Switches[j].id == Combinations[i].CodeSwitchOpen[combiIter])
                         {
-                            combiValid = true;
-                        }
-                        else
-                        {
-                            combiValid = false;
-                            break;
+                            if (Switches[j].IsActive())
+                            {
+                                combiValid = true;
+                            }
+                            else
+                            {
+                                combiValid = false;
+                                break;
+                            }
                         }
                     }
 
