@@ -26,6 +26,8 @@ public class GrabItems : MonoBehaviour
                 heldItem = overlappingItem;
                 heldItem.GetComponent<Collider2D>().enabled = false;
                 Debug.Log("GRAB");
+
+                heldItem.transform.SetParent(this.transform);
             }
         }
         else if (heldItem != null)
@@ -33,6 +35,9 @@ public class GrabItems : MonoBehaviour
             heldItem.transform.position = transform.position;
             if (Input.GetKeyDown(grabItemKey))
             {
+                var currentRoomTransform = GameManager.Instance.CurrentPortal.GetCurrentRoomGO().transform;
+                heldItem.transform.SetParent(currentRoomTransform);
+
                 heldItem.GetComponent<Collider2D>().enabled = true;
                 heldItem = null;
                 Debug.Log("RELEASE");

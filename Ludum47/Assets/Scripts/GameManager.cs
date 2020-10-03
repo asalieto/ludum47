@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
+    public Door CurrentPortal;
     public int m_currentLevel = 0;
 
     private List<int> m_checkPoints;

@@ -18,7 +18,7 @@ public class HealthManager : MonoBehaviour
         initialPosition = transform.position;
     }
 
-    void Respawn()
+    public void Respawn()
     {
         transform.position = initialPosition;
         alive = true;
