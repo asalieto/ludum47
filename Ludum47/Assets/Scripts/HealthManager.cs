@@ -41,6 +41,8 @@ public class HealthManager : MonoBehaviour
             if(tag == "Player")
             {
                 Debug.Log("Player Dead!");
+                GameObject GameOver = (GameObject)Resources.Load("GameOverCanvas");
+                GameObject.Instantiate(GameOver);
             }
             else
             {
