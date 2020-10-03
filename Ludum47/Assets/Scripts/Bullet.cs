@@ -35,6 +35,7 @@ public class Bullet : MonoBehaviour
         {
             if (collision.CompareTag("Player"))
             {
+                AudioManager.Instance.PlaySFX(AudioManager.SFXType.Hit);
                 collision.gameObject.GetComponent<HealthManager>().receiveDamage(1);
                 DestroyBullet();
             }
@@ -43,6 +44,7 @@ public class Bullet : MonoBehaviour
         { 
             if (collision.CompareTag("Enemy"))
             {
+                AudioManager.Instance.PlaySFX(AudioManager.SFXType.Hit);
                 collision.gameObject.GetComponent<HealthManager>().receiveDamage(1);
                 DestroyBullet();
             }

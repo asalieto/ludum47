@@ -184,6 +184,8 @@ public class Enemy : MonoBehaviour
     
     private void Shoot()
     {
+        AudioManager.Instance.PlaySFX(AudioManager.SFXType.Projectile);
+
         GameObject bullet = GameObject.Instantiate(m_bulletPrefab, this.transform.position + (transform.up * m_bulletSeparationMultiplier), Quaternion.identity);
         bullet.GetComponent<Bullet>().Init((m_player.transform.position - transform.position).normalized);
     }
