@@ -7,11 +7,13 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D playerRB;
     public float speed = 5f;
     HealthManager playerHM;
+    Animator PlayerAnim;
 
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
         playerHM = GetComponent<HealthManager>();
+        PlayerAnim = GetComponent<Animator>();
     }
 
     void Update()
@@ -39,16 +41,20 @@ public class PlayerMovement : MonoBehaviour
         }
 
         playerRB.velocity = auxVel;
+        PlayerAnim.SetFloat("SpeedX", auxVel.x);
+        PlayerAnim.SetFloat("SpeedY", auxVel.y);
+
         /*transform.position.Set(transform.position.x + auxVel.x * Time.deltaTime,
                                transform.position.y + auxVel.y * Time.deltaTime,
                                transform.position.z);*/
 
         if(playerRB.velocity.magnitude != 0f)
         {
-            m_lastVelocityDirection = playerRB.velocity;
+            m_lastVelocityDirection = playerRB.velocity.normalized;
+            m_lastVelocityDirection.Normalize();
 
-            float angle = Mathf.Atan2(playerRB.velocity.y, playerRB.velocity.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            angle = Mathf.Atan2(playerRB.velocity.y, playerRB.velocity.x) * Mathf.Rad2Deg;
+            //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
 
         m_currentBulletInterval += Time.deltaTime;
@@ -65,11 +71,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Shoot()
     {
-        var bullet = GameObject.Instantiate(m_bulletPrefab, this.transform.position + (transform.up * m_bulletSeparationMultiplier), Quaternion.identity);
+        var bullet = Instantiate(m_bulletPrefab, transform.position + new Vector3(m_lastVelocityDirection.x, m_lastVelocityDirection.y, 0) * m_bulletSeparationMultiplier, Quaternion.AngleAxis(angle, Vector3.forward));
         bullet.GetComponent<Bullet>().Init(m_lastVelocityDirection.normalized);
     }
 
-    private Vector2 m_lastVelocityDirection = Vector2.up;
+    private Vector2 m_lastVelocityDirection = Vector2.down;
+    private float angle = 0;
     private float m_currentBulletInterval = 0f;
 
     [SerializeField]
