@@ -7,6 +7,7 @@ public class GrabItems : MonoBehaviour
 
     GameObject heldItem = null;
     GameObject overlappingItem = null;
+    KeyCode grabItemKey = KeyCode.E;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,7 @@ public class GrabItems : MonoBehaviour
         if(overlappingItem != null && heldItem == null)
         {
             Debug.Log("IN TRIGGER");
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(grabItemKey))
             {
                 heldItem = overlappingItem;
                 heldItem.GetComponent<Collider2D>().enabled = false;
@@ -30,7 +31,7 @@ public class GrabItems : MonoBehaviour
         else if (heldItem != null)
         {
             heldItem.transform.position = transform.position;
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(grabItemKey))
             {
                 heldItem.GetComponent<Collider2D>().enabled = true;
                 heldItem = null;
