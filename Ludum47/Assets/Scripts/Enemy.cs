@@ -8,8 +8,8 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        m_destinationIndex = 0;
-        m_foward = true;
+        _destinationIndex = 0;
+        _foward = true;
     }
 
     public bool IsAlive()
@@ -19,11 +19,11 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (Alive)
+        if (Alive && _waypoints != null && _waypoints.Count > 0)
         {
             Move();
 
-            if (Vector3.Distance(this.transform.position, m_waypoints[m_destinationIndex].position) <= m_destinationOffset)
+            if (Vector3.Distance(this.transform.position, _waypoints[_destinationIndex].position) <= _destinationOffset)
             {
                 GoToNextWaypoint();
             }
@@ -32,53 +32,53 @@ public class Enemy : MonoBehaviour
 
     private void Move()
     {
-        transform.position = Vector2.MoveTowards(transform.position, m_waypoints[m_destinationIndex].position, m_speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, _waypoints[_destinationIndex].position, _speed * Time.deltaTime);
     }
 
     private void GoToNextWaypoint()
     {
-        if (m_circular)
+        if (_circular)
         {
-            m_destinationIndex = (m_destinationIndex + 1) % m_waypoints.Count;
+            _destinationIndex = (_destinationIndex + 1) % _waypoints.Count;
         }
         else
         {
-            if (m_foward && m_destinationIndex + 1 >= m_waypoints.Count)
+            if (_foward && _destinationIndex + 1 >= _waypoints.Count)
             {
-                m_foward = false;
+                _foward = false;
             }
-            else if (m_destinationIndex - 1 < 0)
+            else if (_destinationIndex - 1 < 0)
             {
-                m_foward = true;
+                _foward = true;
             }
 
-            m_destinationIndex = m_foward ? m_destinationIndex + 1 : m_destinationIndex - 1;
+            _destinationIndex = _foward ? _destinationIndex + 1 : _destinationIndex - 1;
         }
     }
 
     void OnDrawGizmos()
     {
 #if UNITY_EDITOR
-        if (m_waypoints != null)
+        if (_waypoints != null)
         {
-            for (int i = 0; i < m_waypoints.Count; i++)
+            for (int i = 0; i < _waypoints.Count; i++)
             {
-                if (m_waypoints[i] != null)
+                if (_waypoints[i] != null)
                 {
                     Gizmos.color = Color.red;
-                    Gizmos.DrawWireSphere(m_waypoints[i].position, m_waypointRadius);
+                    Gizmos.DrawWireSphere(_waypoints[i].position, _waypointRadius);
 
                     int nextWaypoint = i + 1;
 
-                    if (m_circular)
+                    if (_circular)
                     {
-                        nextWaypoint = nextWaypoint % m_waypoints.Count;
+                        nextWaypoint = nextWaypoint % _waypoints.Count;
                     }
 
-                    if (nextWaypoint < m_waypoints.Count && m_waypoints[nextWaypoint] != null)
+                    if (nextWaypoint < _waypoints.Count && _waypoints[nextWaypoint] != null)
                     {
                         Gizmos.color = Color.blue;
-                        Gizmos.DrawLine(m_waypoints[i].position, m_waypoints[nextWaypoint].position);
+                        Gizmos.DrawLine(_waypoints[i].position, _waypoints[nextWaypoint].position);
                     }
                 }
             }
@@ -86,16 +86,16 @@ public class Enemy : MonoBehaviour
 #endif
     }
 
-    private float m_waypointRadius = 0.15f;
-    private int m_destinationIndex = 0;
-    private bool m_foward;
+    private float _waypointRadius = 0.15f;
+    private int _destinationIndex = 0;
+    private bool _foward;
 
     [SerializeField]
-    private float m_speed = 1.5f;
+    private float _speed = 1.5f;
     [SerializeField]
-    private float m_destinationOffset = 0.05f;
+    private float _destinationOffset = 0.05f;
     [SerializeField]
-    private bool m_circular;
+    private bool _circular;
     [SerializeField]
-    private List<Transform> m_waypoints = null;
+    private List<Transform> _waypoints = null;
 }
