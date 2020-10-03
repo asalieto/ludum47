@@ -202,10 +202,6 @@ PrefabInstance:
       propertyPath: m_waypoints.Array.data[1]
       value: 
       objectReference: {fileID: 934077752}
-    - target: {fileID: 4552538233743437008, guid: dbffb5bdc35435b42b2600fc646b19dd, type: 3}
-      propertyPath: m_TimeBetweenShoot
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4778443639745806201, guid: dbffb5bdc35435b42b2600fc646b19dd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.27520335
