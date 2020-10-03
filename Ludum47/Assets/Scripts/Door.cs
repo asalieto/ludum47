@@ -19,6 +19,13 @@ public class Door : MonoBehaviour
         {
             Enemies[i].OnDie = OnDieEnemy;
         }
+
+        GameManager.Instance.CurrentPortal = this;
+    }
+
+    public GameObject GetCurrentRoomGO()
+    {
+        return RoomSpecificRoot[m_currentRoom];
     }
 
     private void OnDieEnemy(int id)
@@ -28,7 +35,8 @@ public class Door : MonoBehaviour
 
     private void TransportToNextRoom()
     {
-        RoomSpecificRoot[m_currentRoom].SetActive(false);
+        int previousRoom = m_currentRoom;
+
         m_currentRoom = CheckNextRoom();
 
         Debug.Log("TELEPORT TO ROOM: " + m_currentRoom);
@@ -39,6 +47,7 @@ public class Door : MonoBehaviour
         }
         else
         {
+            RoomSpecificRoot[previousRoom].SetActive(false);
             RoomSpecificRoot[m_currentRoom].SetActive(true);
 
             for (int i = 0; i < Enemies.Length; ++i)

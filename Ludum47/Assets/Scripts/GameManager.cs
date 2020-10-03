@@ -3,14 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
+    public Door CurrentPortal;
     public int m_currentLevel = 0;
-    /*
-    private void Start()
-    {
-        //lol this is terrible, TODO use a loader instead
-        var a = Instance;
-    }
-    */
+
     public void LoadNextLevel()
     {
         m_currentLevel++;
