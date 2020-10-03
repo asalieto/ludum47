@@ -43,6 +43,7 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         m_alive = false;
+        m_isShooting = false;
         OnDie?.Invoke(EnemyID);
 
         this.gameObject.SetActive(false);
@@ -57,7 +58,10 @@ public class Enemy : MonoBehaviour
     {
         TEST_Die = false;
         m_alive = true;
+        m_isShooting = false;
         transform.position = m_originPos;
+
+        GetComponent<HealthManager>().Respawn();
 
         this.gameObject.SetActive(true);
     }

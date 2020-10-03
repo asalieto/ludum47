@@ -9,13 +9,11 @@ public class OverlapDetector : MonoBehaviour
     int overlappingElements = 0;
     public int id = 0;
 
-    // Start is called before the first frame update
-    void Start()
+    public bool IsActive()
     {
-        
+        return active;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (active)
