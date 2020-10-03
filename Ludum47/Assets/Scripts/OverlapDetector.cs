@@ -7,6 +7,7 @@ public class OverlapDetector : MonoBehaviour
 
     bool active = false;
     int overlappingElements = 0;
+    public int id = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -25,24 +26,30 @@ public class OverlapDetector : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.isTrigger)
+        if (!collision.isTrigger && collision.gameObject.tag == "ObjectGrab")
         {
-            overlappingElements++;
-            if (overlappingElements > 0)
+            if(collision.gameObject.GetComponent<ObjectID>().id == id)
             {
-                active = true;
+                overlappingElements++;
+                if (overlappingElements > 0)
+                {
+                    active = true;
+                }
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (!collision.isTrigger)
+        if (!collision.isTrigger && collision.gameObject.tag == "ObjectGrab")
         {
-            overlappingElements--;
-            if (overlappingElements <= 0)
+            if (collision.gameObject.GetComponent<ObjectID>().id == id)
             {
-                active = false;
+                overlappingElements--;
+                if (overlappingElements <= 0)
+                {
+                    active = false;
+                }
             }
         }
     }
