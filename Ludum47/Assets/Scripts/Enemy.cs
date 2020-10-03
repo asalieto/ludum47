@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour
     {
         m_destinationIndex = 0;
         m_foward = true;
+        m_alive = true;
 
         m_originPos = transform.position;
     }
