@@ -18,14 +18,20 @@ public class AudioManager : Singleton<AudioManager>
 
     public void PlayAudio(int index, bool loop)
     {
-        AudioClip file = m_audios[index];
-        PlayAudio(file, loop);
+        if (m_audios != null && m_audios.Count > 0)
+        {
+            AudioClip file = m_audios[index];
+            PlayAudio(file, loop);
+        }
     }
 
     public void PlayAudio(string name, bool loop)
     {
-        AudioClip file = m_audios.Where(x => x.name == name).SingleOrDefault();
-        PlayAudio(file, loop);
+        if (m_audios != null && m_audios.Count > 0)
+        {
+            AudioClip file = m_audios.Where(x => x.name == name).SingleOrDefault();
+            PlayAudio(file, loop);
+        }
     }
 
     public void PlayAudio(AudioClip file, bool loop)
@@ -42,30 +48,34 @@ public class AudioManager : Singleton<AudioManager>
 
     public void PlaySFX(SFXType type, bool force = false)
     {
-        AudioClip clip = null;
-
-        switch (type)
+        if (m_sfxSource != null)
         {
-            case SFXType.Portal:
-                clip = m_sfxPortal[m_randomGenerator.Next(0, m_sfxPortal.Count - 1)];
-                break;
-            case SFXType.Hit:
-                clip = m_sfxHit[m_randomGenerator.Next(0, m_sfxHit.Count - 1)];
-                break;
-            case SFXType.Projectile:
-                clip = m_sfxProjectile[m_randomGenerator.Next(0, m_sfxProjectile.Count - 1)];
-                break;
-            case SFXType.Pickup:
-                clip = m_sfxPickup[m_randomGenerator.Next(0, m_sfxPickup.Count - 1)];
-                break;
-            case SFXType.Cat:
-                clip = m_sfxCat[m_randomGenerator.Next(0, m_sfxCat.Count - 1)];
-                break;
-            default:
-                break;
-        }
+            AudioClip clip = null;
 
-        PlaySFX(clip, force);
+            switch (type)
+            {
+                case SFXType.Portal:
+                    clip = m_sfxPortal[m_randomGenerator.Next(0, m_sfxPortal.Count - 1)];
+                    break;
+                case SFXType.Hit:
+                    clip = m_sfxHit[m_randomGenerator.Next(0, m_sfxHit.Count - 1)];
+                    break;
+                case SFXType.Projectile:
+                    clip = m_sfxProjectile[m_randomGenerator.Next(0, m_sfxProjectile.Count - 1)];
+                    break;
+                case SFXType.Pickup:
+                    clip = m_sfxPickup[m_randomGenerator.Next(0, m_sfxPickup.Count - 1)];
+                    break;
+                case SFXType.Cat:
+                    clip = m_sfxCat[m_randomGenerator.Next(0, m_sfxCat.Count - 1)];
+                    break;
+                default:
+                    break;
+            }
+
+            PlaySFX(clip, force);
+
+        }
     }
 
     public void PlaySFX(string name, bool force = false)
