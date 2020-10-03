@@ -13,9 +13,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float m_speed = 1.5f;
     [SerializeField] private float m_destinationOffset = 0.05f;
     [SerializeField] private float m_distanceSeePlayer = 1.5f;
-    [SerializeField] private float m_TimeBetweenShoot = 1.5f;
+    [SerializeField] private float m_TimeBetweenShoot = 2f;
     [SerializeField] private bool m_circular;
     [SerializeField] private List<Transform> m_waypoints = null;
+    [SerializeField] private float m_bulletSeparationMultiplier = 0.02f;
+    [SerializeField] private GameObject m_bulletPrefab = null;
 
     private GameObject m_player;
     private Vector2 m_originPos;
@@ -67,6 +69,11 @@ public class Enemy : MonoBehaviour
             {
                 GoToNextWaypoint();
             }
+        }
+
+        if(m_alive)
+        {
+            TryShootEnemy();
         }
 
         if (TEST_Die)
@@ -138,10 +145,11 @@ public class Enemy : MonoBehaviour
         {
             if(CheckPlayerInRange())
             {
+                m_canShoot = false;
                 m_isShooting = true;
-                //SHOOT
+                Shoot();
 
-               // StartCoroutine(ShootDelay);
+                StartCoroutine("ShootDelay");
             }
             else
             {
@@ -154,7 +162,9 @@ public class Enemy : MonoBehaviour
     {
         if(Vector2.Distance(m_player.transform.position, transform.position ) < m_distanceSeePlayer)
         {
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, m_player.transform.position - transform.position);
+            int layerMask = LayerMask.GetMask("Enemy");
+            layerMask = ~layerMask;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, m_player.transform.position - transform.position, m_distanceSeePlayer, layerMask);
 
             if(hit && hit.transform.tag == "Player")
             {
@@ -171,10 +181,10 @@ public class Enemy : MonoBehaviour
 
         m_canShoot = true;
     }
-    /*
+    
     private void Shoot()
     {
-        var bullet = GameObject.Instantiate(m_bulletPrefab, this.transform.position + (transform.up * m_bulletSeparationMultiplier), Quaternion.identity);
-        bullet.GetComponent<Bullet>().Init(m_lastVelocityDirection.normalized);
-    }*/
+        GameObject bullet = GameObject.Instantiate(m_bulletPrefab, this.transform.position + (transform.up * m_bulletSeparationMultiplier), Quaternion.identity);
+        bullet.GetComponent<Bullet>().Init((m_player.transform.position - transform.position).normalized);
+    }
 }
