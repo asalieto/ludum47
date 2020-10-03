@@ -41,37 +41,37 @@ public class PlayerMovement : MonoBehaviour
 
         if(playerRB.velocity.magnitude != 0f)
         {
-            _lastVelocityDirection = playerRB.velocity;
+            m_lastVelocityDirection = playerRB.velocity;
 
             float angle = Mathf.Atan2(playerRB.velocity.y, playerRB.velocity.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
 
-        _currentBulletInterval += Time.deltaTime;
+        m_currentBulletInterval += Time.deltaTime;
 
         if (Input.GetKey(KeyCode.Space))
         {
-            if(_currentBulletInterval > _bulletInterval)
+            if(m_currentBulletInterval > m_bulletInterval)
             {
                 Shoot();
-                _currentBulletInterval = 0f;
+                m_currentBulletInterval = 0f;
             }
         }
     }
 
     private void Shoot()
     {
-        var bullet = GameObject.Instantiate(_bulletPrefab, this.transform.position + (transform.up * _bulletSeparationMultiplier), Quaternion.identity);
-        bullet.GetComponent<Bullet>().Init(_lastVelocityDirection.normalized);
+        var bullet = GameObject.Instantiate(m_bulletPrefab, this.transform.position + (transform.up * m_bulletSeparationMultiplier), Quaternion.identity);
+        bullet.GetComponent<Bullet>().Init(m_lastVelocityDirection.normalized);
     }
 
-    private Vector2 _lastVelocityDirection = Vector2.up;
-    private float _currentBulletInterval = 0f;
+    private Vector2 m_lastVelocityDirection = Vector2.up;
+    private float m_currentBulletInterval = 0f;
 
     [SerializeField]
-    private GameObject _bulletPrefab = null;
+    private GameObject m_bulletPrefab = null;
     [SerializeField]
-    private float _bulletInterval = 0.2f;
+    private float m_bulletInterval = 0.2f;
     [SerializeField]
-    private float _bulletSeparationMultiplier = 0.02f;
+    private float m_bulletSeparationMultiplier = 0.02f;
 }

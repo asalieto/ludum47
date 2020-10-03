@@ -4,7 +4,7 @@ public class Bullet : MonoBehaviour
 {
     public void Init(Vector3 direction)
     {
-        _rb.AddForce(direction * _bulletSpeed);
+        m_rb.AddForce(direction * m_bulletSpeed);
     }
 
     void Update()
@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
     }
 
     [SerializeField]
-    private float _bulletSpeed = 10f;
+    private float m_bulletSpeed = 10f;
     [SerializeField]
-    private Rigidbody2D _rb = null;
+    private Rigidbody2D m_rb = null;
 }

@@ -145,6 +145,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  _bulletPrefab: {fileID: 6862636990602757244, guid: 8416b56ce89e2374394e80559d024551, type: 3}
-  _bulletInterval: 0.25
-  _bulletSeparationMultiplier: 0.01
+  m_bulletPrefab: {fileID: 6862636990602757244, guid: 8416b56ce89e2374394e80559d024551, type: 3}
+  m_bulletInterval: 0.2
+  m_bulletSeparationMultiplier: 0.02

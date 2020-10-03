@@ -1,101 +1,126 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public bool Alive;
+    public Action<int> OnDie;
+    public bool TEST_Die = false;
+
+    public int EnemyID;
+
+    [SerializeField] private float m_speed = 1.5f;
+    [SerializeField] private float m_destinationOffset = 0.05f;
+    [SerializeField] private bool m_circular;
+    [SerializeField] private List<Transform> m_waypoints = null;
+
+    private Vector2 m_originPos;
+    private bool m_alive;
+
+    private float m_waypointRadius = 0.15f;
+    private int m_destinationIndex = 0;
+    private bool m_foward;
 
     void Start()
     {
-        _destinationIndex = 0;
-        _foward = true;
+        m_destinationIndex = 0;
+        m_foward = true;
+
+        m_originPos = transform.position;
+    }
+
+    private void Die()
+    {
+        m_alive = false;
+        OnDie(EnemyID);
     }
 
     public bool IsAlive()
     {
-        return Alive;
+        return m_alive;
+    }
+
+    public void ResetEnemy()
+    {
+        TEST_Die = false;
+        enabled = true;
+        m_alive = true;
+        transform.position = m_originPos;
+
     }
 
     private void Update()
     {
-        if (Alive && _waypoints != null && _waypoints.Count > 0)
+        if (m_alive && m_waypoints != null && m_waypoints.Count > 0)
         {
             Move();
 
-            if (Vector3.Distance(this.transform.position, _waypoints[_destinationIndex].position) <= _destinationOffset)
+            if (Vector3.Distance(this.transform.position, m_waypoints[m_destinationIndex].position) <= m_destinationOffset)
             {
                 GoToNextWaypoint();
             }
+        }
+
+        if (TEST_Die)
+        {
+            Die();
+            enabled = false;
         }
     }
 
     private void Move()
     {
-        transform.position = Vector2.MoveTowards(transform.position, _waypoints[_destinationIndex].position, _speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, m_waypoints[m_destinationIndex].position, m_speed * Time.deltaTime);
     }
 
     private void GoToNextWaypoint()
     {
-        if (_circular)
+        if (m_circular)
         {
-            _destinationIndex = (_destinationIndex + 1) % _waypoints.Count;
+            m_destinationIndex = (m_destinationIndex + 1) % m_waypoints.Count;
         }
         else
         {
-            if (_foward && _destinationIndex + 1 >= _waypoints.Count)
+            if (m_foward && m_destinationIndex + 1 >= m_waypoints.Count)
             {
-                _foward = false;
+                m_foward = false;
             }
-            else if (_destinationIndex - 1 < 0)
+            else if (m_destinationIndex - 1 < 0)
             {
-                _foward = true;
+                m_foward = true;
             }
 
-            _destinationIndex = _foward ? _destinationIndex + 1 : _destinationIndex - 1;
+            m_destinationIndex = m_foward ? m_destinationIndex + 1 : m_destinationIndex - 1;
         }
     }
 
     void OnDrawGizmos()
     {
 #if UNITY_EDITOR
-        if (_waypoints != null)
+        if (m_waypoints != null)
         {
-            for (int i = 0; i < _waypoints.Count; i++)
+            for (int i = 0; i < m_waypoints.Count; i++)
             {
-                if (_waypoints[i] != null)
+                if (m_waypoints[i] != null)
                 {
                     Gizmos.color = Color.red;
-                    Gizmos.DrawWireSphere(_waypoints[i].position, _waypointRadius);
+                    Gizmos.DrawWireSphere(m_waypoints[i].position, m_waypointRadius);
 
                     int nextWaypoint = i + 1;
 
-                    if (_circular)
+                    if (m_circular)
                     {
-                        nextWaypoint = nextWaypoint % _waypoints.Count;
+                        nextWaypoint = nextWaypoint % m_waypoints.Count;
                     }
 
-                    if (nextWaypoint < _waypoints.Count && _waypoints[nextWaypoint] != null)
+                    if (nextWaypoint < m_waypoints.Count && m_waypoints[nextWaypoint] != null)
                     {
                         Gizmos.color = Color.blue;
-                        Gizmos.DrawLine(_waypoints[i].position, _waypoints[nextWaypoint].position);
+                        Gizmos.DrawLine(m_waypoints[i].position, m_waypoints[nextWaypoint].position);
                     }
                 }
             }
         }
 #endif
     }
-
-    private float _waypointRadius = 0.15f;
-    private int _destinationIndex = 0;
-    private bool _foward;
-
-    [SerializeField]
-    private float _speed = 1.5f;
-    [SerializeField]
-    private float _destinationOffset = 0.05f;
-    [SerializeField]
-    private bool _circular;
-    [SerializeField]
-    private List<Transform> _waypoints = null;
 }
