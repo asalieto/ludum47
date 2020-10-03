@@ -28,12 +28,16 @@ public class Enemy : MonoBehaviour
         m_alive = true;
 
         m_originPos = transform.position;
+
+        this.gameObject.SetActive(true);
     }
 
-    private void Die()
+    public void Die()
     {
         m_alive = false;
         OnDie(EnemyID);
+
+        this.gameObject.SetActive(false);
     }
 
     public bool IsAlive()
@@ -44,10 +48,10 @@ public class Enemy : MonoBehaviour
     public void ResetEnemy()
     {
         TEST_Die = false;
-        enabled = true;
         m_alive = true;
         transform.position = m_originPos;
 
+        this.gameObject.SetActive(true);
     }
 
     private void Update()
@@ -65,7 +69,6 @@ public class Enemy : MonoBehaviour
         if (TEST_Die)
         {
             Die();
-            enabled = false;
         }
     }
 

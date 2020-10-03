@@ -7,6 +7,7 @@ public class Door : MonoBehaviour
     public Enemy[] Enemies;
     public GameObject[] RoomSpecificRoot; // Default could be option 0
     public DoorCombination[] Combinations;
+    public Transform StartPositionTransform;
 
     private int m_currentRoom = 0;
     private List<int> m_enemiesDieOrdered = new List<int>();
@@ -96,8 +97,8 @@ public class Door : MonoBehaviour
         {
             TransportToNextRoom();
 
-            //This should be donde on the player
-            col.gameObject.transform.position = new Vector3(0, 5, 5);
+            //This should be done on the player
+            col.gameObject.transform.position = StartPositionTransform.position;
         }
     }
 
