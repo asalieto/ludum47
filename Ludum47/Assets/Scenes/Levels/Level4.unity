@@ -489,6 +489,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7638925515697199270, guid: b98e50ea8a5852d499d4e683122bd383, type: 3}
   m_PrefabInstance: {fileID: 7638925515454347379}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &984296039 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3760382108879747061, guid: eb02f3e00326b6249a0b4a9ba205b8e8, type: 3}
+  m_PrefabInstance: {fileID: 3760382108011762850}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 308733a1e9a4584499a4b83d4bf6c038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1003973425
 GameObject:
   m_ObjectHideFlags: 0
@@ -1941,6 +1952,10 @@ PrefabInstance:
       objectReference: {fileID: 1007765610}
     - target: {fileID: 3760382108512748022, guid: eb02f3e00326b6249a0b4a9ba205b8e8, type: 3}
       propertyPath: Combinations.Array.data[2]
+      value: 
+      objectReference: {fileID: 984296039}
+    - target: {fileID: 3760382108512748022, guid: eb02f3e00326b6249a0b4a9ba205b8e8, type: 3}
+      propertyPath: Combinations.Array.data[0]
       value: 
       objectReference: {fileID: 1181749621}
     - target: {fileID: 3760382108512748026, guid: eb02f3e00326b6249a0b4a9ba205b8e8, type: 3}
