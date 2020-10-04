@@ -136,7 +136,8 @@ MonoBehaviour:
   m_enabled: 0
   m_audioSource: {fileID: 125535157}
   m_sfxSource: {fileID: 6676471537550347495}
-  m_sfxs: []
+  m_sfxs:
+  - {fileID: 8300000, guid: f7f69647183c15e4397c80acc1165256, type: 3}
   m_audios:
   - {fileID: 8300000, guid: cf5fa2026c2e87f4f86cfa428fb24001, type: 3}
   - {fileID: 8300000, guid: 1f5fad33313d6384fbf28a6785d24283, type: 3}

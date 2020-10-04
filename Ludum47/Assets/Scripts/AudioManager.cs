@@ -80,14 +80,17 @@ public class AudioManager : Singleton<AudioManager>
 
     public void PlaySFX(string name, bool force = false)
     {
-        AudioClip clip = m_sfxs.Where(x => x.name == name).SingleOrDefault();
+        if (m_sfxSource != null)
+        {
+            AudioClip clip = m_sfxs.Where(x => x.name == name).SingleOrDefault();
 
-        PlaySFX(clip, force);
+            PlaySFX(clip, force);
+        }
     }
 
     public void PlaySFX(AudioClip clip, bool force = false)
     {
-        if (m_sfxSource.isPlaying && !force)
+        if (m_sfxSource == null || (m_sfxSource.isPlaying && !force))
         {
             return;
         }
