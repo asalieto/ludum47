@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class FireTrap : MonoBehaviour
 {
+    private Animator m_anim;
+
     void Start()
     {
         m_currentInterval = 0;
+        m_anim = GetComponent<Animator>();
+
+        switch (m_direction)
+        {
+            case Direction.Up:
+                m_anim.SetBool("FacingUp", true);
+                break;
+        }
     }
 
     void Update()
@@ -26,9 +36,16 @@ public class FireTrap : MonoBehaviour
 
         Vector2 vector = GetDirectionVector();
         float angle = Mathf.Atan2(vector.x, vector.y) * Mathf.Rad2Deg;
+        
+        if(angle >= 180)
+        {
+
+        }
 
         var bullet = Instantiate(m_bulletPrefab, transform.position + new Vector3(vector.x, vector.y, 0) * m_bulletSeparationMultiplier, Quaternion.AngleAxis(angle + 90, Vector3.forward));
         bullet.GetComponent<Bullet>().Init(vector.normalized);
+
+        m_anim.SetTrigger("Shoot");
     }
 
     private float m_currentInterval = 0f;
