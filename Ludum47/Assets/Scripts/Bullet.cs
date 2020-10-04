@@ -8,6 +8,8 @@ public class Bullet : MonoBehaviour
     {
         m_currentLifeTime = 0f;
         m_rb.AddForce(direction * m_bulletSpeed);
+
+        m_isAlive = true;
     }
 
     void Update()
@@ -26,8 +28,14 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Obstacle"))
+        if(!m_isAlive)
         {
+            return;
+        }
+
+        if (collision.CompareTag("Obstacle"))
+        {
+            m_isAlive = false;
             DestroyBullet();
         }
 
@@ -35,6 +43,7 @@ public class Bullet : MonoBehaviour
         {
             if (collision.CompareTag("Player"))
             {
+                m_isAlive = false;
                 AudioManager.Instance.PlaySFX(AudioManager.SFXType.Hit);
                 collision.gameObject.GetComponent<HealthManager>().receiveDamage(1);
                 DestroyBullet();
@@ -44,6 +53,7 @@ public class Bullet : MonoBehaviour
         { 
             if (collision.CompareTag("Enemy"))
             {
+                m_isAlive = false;
                 AudioManager.Instance.PlaySFX(AudioManager.SFXType.Hit);
                 collision.gameObject.GetComponent<HealthManager>().receiveDamage(1);
                 DestroyBullet();
@@ -66,4 +76,6 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D m_rb = null;
     [SerializeField]
     private bool m_isEnemyBullet;
+
+    private bool m_isAlive = true;
 }
