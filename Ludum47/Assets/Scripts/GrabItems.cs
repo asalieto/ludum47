@@ -7,7 +7,13 @@ public class GrabItems : MonoBehaviour
 
     GameObject heldItem = null;
     GameObject overlappingItem = null;
+    Animator playerAnim;
     KeyCode grabItemKey = KeyCode.E;
+
+    private void Start()
+    {
+        playerAnim = GetComponent<Animator>();
+    }
 
     void Update()
     {
@@ -20,7 +26,8 @@ public class GrabItems : MonoBehaviour
                 Debug.Log("GRAB");
                 AudioManager.Instance.PlaySFX(AudioManager.SFXType.Pickup, true);
 
-                heldItem.transform.SetParent(this.transform);
+                heldItem.transform.SetParent(transform);
+                playerAnim.SetTrigger("Grab");
             }
         }
         else if (heldItem != null)
@@ -33,6 +40,7 @@ public class GrabItems : MonoBehaviour
 
                 heldItem.GetComponent<Collider2D>().enabled = true;
                 heldItem = null;
+                playerAnim.SetTrigger("Grab");
                 Debug.Log("RELEASE");
 
                 AudioManager.Instance.PlaySFX(AudioManager.SFXType.Cat, true);
