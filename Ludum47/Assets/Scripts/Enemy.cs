@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
 
     private GameObject m_player;
     private Vector2 m_originPos;
-    private bool m_alive;
+    private bool m_alive = true;
     private Animator m_anim;
 
     private float m_waypointRadius = 0.15f;
@@ -189,6 +189,17 @@ public class Enemy : MonoBehaviour
 
             if(hit && hit.transform.tag == "Player")
             {
+                if(Mathf.Abs(m_player.transform.position.x - transform.position.x) > Mathf.Abs(m_player.transform.position.y - transform.position.y))
+                {
+                    m_anim.SetFloat("SpeedX", (m_player.transform.position.x - transform.position.x));
+                    m_anim.SetFloat("SpeedY", 0);
+                }
+                else
+                {
+                    m_anim.SetFloat("SpeedX", 0);
+                    m_anim.SetFloat("SpeedY", (m_player.transform.position.y - transform.position.y));
+                }
+
                 return true;
             }
         }

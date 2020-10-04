@@ -10,6 +10,7 @@ public class Door : MonoBehaviour
     public DoorCombination[] Combinations;
     public Transform StartPositionTransform;
     public SpriteRenderer[] m_portalBackgroud;
+    public ParticleSystem m_particles;
 
     private int m_currentRoom = 0; 
     private int m_previousRoom = 0;
@@ -71,6 +72,7 @@ public class Door : MonoBehaviour
         {
             doorColor.a = m_defaultColor.a;
             m_portalBackgroud[i].color = doorColor;
+            m_particles.startColor = doorColor;
         }
     }
 

@@ -5132,6 +5132,7 @@ MonoBehaviour:
   m_portalBackgroud:
   - {fileID: 6201115760931188592}
   - {fileID: 5749768194674116229}
+  m_particles: {fileID: 9078158821145420417}
 --- !u!1 &3760382108528403675
 GameObject:
   m_ObjectHideFlags: 0

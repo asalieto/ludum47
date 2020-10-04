@@ -1,20 +1,28 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
-
     public int maxHealth = 3;
     public int currentHealth;
-    bool alive = true;
-    Vector3 initialPosition;
 
-    [SerializeField] private GameObject m_hitParticlesPrefab = null;
+    private bool alive = true;
+    private Vector3 initialPosition;
+    private SpriteRenderer m_spriteRenderer;
+    private Coroutine m_damageRoutine = null;
+    private float m_currentColorDamageDuration = 0f;
 
-    // Start is called before the first frame update
+    [SerializeField] 
+    private GameObject m_hitParticlesPrefab = null;
+    [SerializeField]
+    private Color m_damagedColor = Color.white;
+    [SerializeField]
+    private float m_colorDamageDuration = 0.5f;
+
     void Start()
     {
+        m_spriteRenderer = GetComponent<SpriteRenderer>();
+
         currentHealth = maxHealth;
         initialPosition = transform.position;
     }
@@ -35,10 +43,12 @@ public class HealthManager : MonoBehaviour
     {
         currentHealth -= damage;
 
-        if(m_hitParticlesPrefab != null)
+        if (m_hitParticlesPrefab != null)
         {
             GameObject.Instantiate(m_hitParticlesPrefab, this.transform);
         }
+
+        VisualDamage();
 
         if (currentHealth <= 0 && alive)
         {
@@ -55,6 +65,34 @@ public class HealthManager : MonoBehaviour
             }
 
             alive = false;
+        }
+    }
+
+    private void VisualDamage()
+    {
+        if (m_damageRoutine != null)
+        {
+            StopCoroutine(m_damageRoutine);
+            m_damageRoutine = null;
+            m_spriteRenderer.color = Color.white;
+        }
+
+        m_damageRoutine = StartCoroutine(VisualDamageRoutine());
+    }
+
+    private IEnumerator VisualDamageRoutine()
+    {
+        m_currentColorDamageDuration = 0f;
+
+        m_spriteRenderer.color = m_damagedColor;
+
+        while (m_currentColorDamageDuration < m_colorDamageDuration)
+        {
+            m_spriteRenderer.color = Color.Lerp(m_damagedColor ,Color.white, m_currentColorDamageDuration / m_colorDamageDuration);
+
+            yield return null;
+
+            m_currentColorDamageDuration += Time.deltaTime;
         }
     }
 }

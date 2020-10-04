@@ -8,14 +8,18 @@ public class GameManager : Singleton<GameManager>
     private int m_currentLevel = 0;
     private List<int> m_checkPoints;
 
+    private const int MAX_LEVEL = 10; 
+
     private void Start()
     {
         // Create check point list
         m_checkPoints = new List<int>();
 
         m_checkPoints.Add(0);
-        m_checkPoints.Add(2);
-        m_checkPoints.Add(5);
+        m_checkPoints.Add(3);
+        m_checkPoints.Add(6);
+        m_checkPoints.Add(8);
+        m_checkPoints.Add(9);
         // ........
 
         AudioManager.Instance.PlayAudio(0, true);
@@ -24,6 +28,13 @@ public class GameManager : Singleton<GameManager>
     public void LoadNextLevel()
     {
         m_currentLevel++;
+
+        if(m_currentLevel > MAX_LEVEL)
+        {
+            SceneManager.LoadScene("MenuMap", LoadSceneMode.Single);
+            return;
+        }
+
         SceneManager.LoadScene("Level" + m_currentLevel.ToString(), LoadSceneMode.Single);
     }
 
