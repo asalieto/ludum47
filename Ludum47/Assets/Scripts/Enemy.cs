@@ -85,9 +85,6 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-
-        Debug.Log(m_anim.speed);
-
         if (m_alive && m_waypoints != null && m_waypoints.Count > 0 && !m_isShooting)
         {
             Move();

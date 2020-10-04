@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GrabItems : MonoBehaviour
 {
+    public bool HoldingItem;
 
     GameObject heldItem = null;
     GameObject overlappingItem = null;
@@ -15,11 +16,12 @@ public class GrabItems : MonoBehaviour
     private void Start()
     {
         playerAnim = GetComponent<Animator>();
+
+        HoldingItem = false;
     }
 
     void Update()
     {
-
         if(overlappingItem != null && heldItem == null)
         {
             if (Input.GetKeyDown(grabItemKey))
@@ -31,6 +33,8 @@ public class GrabItems : MonoBehaviour
 
                 heldItem.transform.SetParent(transform);
                 playerAnim.SetTrigger("Grab");
+
+                HoldingItem = true;
             }
         }
         else if (heldItem != null)
@@ -65,6 +69,8 @@ public class GrabItems : MonoBehaviour
                 playerAnim.SetTrigger("Grab");
 
                 Debug.Log("RELEASE");
+
+                HoldingItem = false;
 
                 AudioManager.Instance.PlaySFX(AudioManager.SFXType.Cat, true);
             }
