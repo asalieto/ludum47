@@ -39,12 +39,31 @@ public class GrabItems : MonoBehaviour
 
             if (Input.GetKeyDown(grabItemKey))
             {
+                switch (playerAnim.GetCurrentAnimatorClipInfo(0)[0].clip.name)
+                {
+                    case "Player_CarryDown":
+                    case "Player_IdleCarryDown":
+                        heldItem.transform.position = new Vector3(transform.position.x, transform.position.y - grabOffset, transform.position.z);
+                        break;
+                    case "Player_CarryLeft":
+                    case "Player_IdleCarryLeft":
+                        heldItem.transform.position = new Vector3(transform.position.x - grabOffset, transform.position.y, transform.position.z);
+                        break;
+                    case "Player_CarryRight":
+                    case "Player_IdleCarryRight":
+                        heldItem.transform.position = new Vector3(transform.position.x + grabOffset, transform.position.y, transform.position.z);
+                        break;
+                    default:
+                        break;
+                }
+
                 var currentRoomTransform = GameManager.Instance.CurrentPortal.GetCurrentRoomGO().transform;
                 heldItem.transform.SetParent(currentRoomTransform);
 
                 heldItem.GetComponent<Collider2D>().enabled = true;
                 heldItem = null;
                 playerAnim.SetTrigger("Grab");
+
                 Debug.Log("RELEASE");
 
                 AudioManager.Instance.PlaySFX(AudioManager.SFXType.Cat, true);
