@@ -462,6 +462,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7964355544513405295, guid: 0c96178ce0eed5446a2bb4bcf98bde6f, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c96178ce0eed5446a2bb4bcf98bde6f, type: 3}
 --- !u!224 &849240277 stripped
@@ -633,6 +637,10 @@ PrefabInstance:
     - target: {fileID: 7605366896620434515, guid: 5e013bd6791817b48941c6d6c8f57be8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7605366896620434516, guid: 5e013bd6791817b48941c6d6c8f57be8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7605366896620434517, guid: 5e013bd6791817b48941c6d6c8f57be8, type: 3}
       propertyPath: m_Name

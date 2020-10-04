@@ -77,8 +77,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 760007448452979856, guid: 2b5bb4741bbace545b932794b2ec0480, type: 3}
+  m_SortingOrder: 2
+  m_Sprite: {fileID: -789728445951442341, guid: 2b5bb4741bbace545b932794b2ec0480, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -134,7 +134,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.19570617, y: 0.32}
+  m_Size: {x: 0.27, y: 0.32}
   m_EdgeRadius: 0
 --- !u!61 &7964355544513405282
 BoxCollider2D:
@@ -160,7 +160,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.13517094, y: 0.25}
+  m_Size: {x: 0.21, y: 0.25}
   m_EdgeRadius: 0
 --- !u!114 &7964355544513405283
 MonoBehaviour:
@@ -205,6 +205,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   currentHealth: 0
+  m_hitParticlesPrefab: {fileID: 0}
 --- !u!95 &7912354477783516745
 Animator:
   serializedVersion: 3
