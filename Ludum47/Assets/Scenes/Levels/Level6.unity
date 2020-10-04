@@ -1841,6 +1841,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &1620581237 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4662242838190239828, guid: 6d4be4de942619d489844b1605d6aab5, type: 3}
+  m_PrefabInstance: {fileID: 1196721269}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c8f35ee95842994f87e99c39e225429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1731650916
 GameObject:
   m_ObjectHideFlags: 0
@@ -2205,6 +2216,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3760382108512748022, guid: eb02f3e00326b6249a0b4a9ba205b8e8, type: 3}
+      propertyPath: Switches.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3760382108512748022, guid: eb02f3e00326b6249a0b4a9ba205b8e8, type: 3}
       propertyPath: Enemies.Array.data[0]
       value: 
       objectReference: {fileID: 454960078}
@@ -2228,6 +2243,10 @@ PrefabInstance:
       propertyPath: StartPositionTransform
       value: 
       objectReference: {fileID: 849240277}
+    - target: {fileID: 3760382108512748022, guid: eb02f3e00326b6249a0b4a9ba205b8e8, type: 3}
+      propertyPath: Switches.Array.data[0]
+      value: 
+      objectReference: {fileID: 1620581237}
     - target: {fileID: 3760382108512748026, guid: eb02f3e00326b6249a0b4a9ba205b8e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -22,7 +22,7 @@ public class FireTrap : MonoBehaviour
 
     private void Shoot()
     {
-        AudioManager.Instance.PlaySFX(AudioManager.SFXType.Projectile);
+        AudioManager.Instance.PlaySFX("trap", false);
 
         Vector2 vector = GetDirectionVector();
         float angle = Mathf.Atan2(vector.x, vector.y) * Mathf.Rad2Deg;

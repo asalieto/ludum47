@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Shoot()
     {
-        AudioManager.Instance.PlaySFX(AudioManager.SFXType.Projectile);
+        AudioManager.Instance.PlaySFX(AudioManager.SFXType.Projectile, true);
 
         var bullet = Instantiate(m_bulletPrefab, transform.position + new Vector3(m_lastVelocityDirection.x, m_lastVelocityDirection.y, 0) * m_bulletSeparationMultiplier, Quaternion.AngleAxis(angle, Vector3.forward));
         bullet.GetComponent<Bullet>().Init(m_lastVelocityDirection.normalized);
