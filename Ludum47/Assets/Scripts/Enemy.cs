@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     private GameObject m_player;
     private Vector2 m_originPos;
     private bool m_alive;
+    private Animator m_anim;
 
     private float m_waypointRadius = 0.15f;
     private int m_destinationIndex = 0;
@@ -36,6 +37,7 @@ public class Enemy : MonoBehaviour
 
         m_originPos = transform.position;
         m_player = GameObject.FindGameObjectWithTag("Player");
+        m_anim = GetComponent<Animator>();
         this.gameObject.SetActive(true);
     }
 
@@ -45,7 +47,9 @@ public class Enemy : MonoBehaviour
         m_isShooting = false;
         OnDie?.Invoke(EnemyID);
 
-        this.gameObject.SetActive(false);
+        m_anim.SetTrigger("Death");
+
+        //this.gameObject.SetActive(false);
     }
 
     public bool IsAlive()
@@ -85,6 +89,9 @@ public class Enemy : MonoBehaviour
 
     private void Move()
     {
+        m_anim.SetFloat("SpeedX", (m_waypoints[m_destinationIndex].position.x - transform.position.x));
+        m_anim.SetFloat("SpeedY", (m_waypoints[m_destinationIndex].position.y - transform.position.y));
+
         transform.position = Vector2.MoveTowards(transform.position, m_waypoints[m_destinationIndex].position, m_speed * Time.deltaTime);
     }
 
@@ -188,5 +195,7 @@ public class Enemy : MonoBehaviour
 
         GameObject bullet = GameObject.Instantiate(m_bulletPrefab, this.transform.position + (transform.up * m_bulletSeparationMultiplier), Quaternion.identity);
         bullet.GetComponent<Bullet>().Init((m_player.transform.position - transform.position).normalized);
+
+        m_anim.SetTrigger("Shoot");
     }
 }
