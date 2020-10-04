@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Rigidbody2D playerRB;
     public float speed = 5f;
-    HealthManager playerHM;
-    Animator PlayerAnim;
+
+    private Rigidbody2D playerRB;
+    private HealthManager playerHM;
+    private Animator PlayerAnim;
+    private GrabItems grabItems;
 
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
         playerHM = GetComponent<HealthManager>();
         PlayerAnim = GetComponent<Animator>();
+        grabItems = GetComponent<GrabItems>();
     }
 
     void Update()
@@ -61,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space))
         {
-            if(m_currentBulletInterval > m_bulletInterval)
+            if(m_currentBulletInterval > m_bulletInterval && !grabItems.HoldingItem)
             {
                 Shoot();
                 m_currentBulletInterval = 0f;

@@ -3629,6 +3629,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7964355544513405295, guid: 0c96178ce0eed5446a2bb4bcf98bde6f, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2025533911
+      objectReference: {fileID: 0}
+    - target: {fileID: 7964355544513405295, guid: 0c96178ce0eed5446a2bb4bcf98bde6f, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c96178ce0eed5446a2bb4bcf98bde6f, type: 3}
 --- !u!1 &716168949
@@ -4314,7 +4322,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 9
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: d3bba1dec45363c49828556b68257802, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -6788,6 +6796,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 7605366896620434516, guid: 5e013bd6791817b48941c6d6c8f57be8, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -2025533911
+      objectReference: {fileID: 0}
+    - target: {fileID: 7605366896620434516, guid: 5e013bd6791817b48941c6d6c8f57be8, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7605366896620434517, guid: 5e013bd6791817b48941c6d6c8f57be8, type: 3}
       propertyPath: m_Name
       value: ObjectGrab_Blue
@@ -7566,7 +7582,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 9
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: d3bba1dec45363c49828556b68257802, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -8041,9 +8057,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'grab the box using E
-
-    and put it on the platform to activate the portal!'
+  m_text: use E to grab and drop the box! switches can redirect portals!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 73453f9b7c2ba6641a1b3bd7ab8e2ef1, type: 2}
   m_sharedMaterial: {fileID: -3200370051606417499, guid: 73453f9b7c2ba6641a1b3bd7ab8e2ef1, type: 2}
@@ -8838,7 +8852,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 583126a336fde444ba323e80fbbd2042, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -11665,8 +11679,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2025533911
+  m_SortingLayer: 2
   m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: dd735e0701ded27438c2b9ec2604abf1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -13029,8 +13043,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -2025533911
+  m_SortingLayer: 2
   m_SortingOrder: 6
   m_Sprite: {fileID: 21300000, guid: ae1c155d235685848bd2ba8d6fbdab33, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
