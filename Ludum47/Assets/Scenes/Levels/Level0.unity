@@ -9940,11 +9940,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3036926933943603442, guid: 6b5d5a5cec868d549b9146f98e1cdbdc, type: 3}
       propertyPath: m_text
-      value: portals will take you to the next level
+      value: golden portals will take you to the next level
       objectReference: {fileID: 0}
     - target: {fileID: 3036926933943603442, guid: 6b5d5a5cec868d549b9146f98e1cdbdc, type: 3}
       propertyPath: m_fontSize
-      value: 2.35
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3036926933943603443, guid: 6b5d5a5cec868d549b9146f98e1cdbdc, type: 3}
       propertyPath: m_LocalPosition.x
