@@ -646,6 +646,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: ObjectGrab_Blue
       objectReference: {fileID: 0}
+    - target: {fileID: 4662242838190239832, guid: 6d4be4de942619d489844b1605d6aab5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662242838190239832, guid: 6d4be4de942619d489844b1605d6aab5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662242838190239835, guid: 6d4be4de942619d489844b1605d6aab5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e013bd6791817b48941c6d6c8f57be8, type: 3}
 --- !u!1001 &1322407387
