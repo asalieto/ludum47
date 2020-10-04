@@ -10,6 +10,7 @@ public class HealthManager : MonoBehaviour
     bool alive = true;
     Vector3 initialPosition;
 
+    [SerializeField] private GameObject m_hitParticlesPrefab = null;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,11 @@ public class HealthManager : MonoBehaviour
     public void receiveDamage(int damage)
     {
         currentHealth -= damage;
+
+        if(m_hitParticlesPrefab != null)
+        {
+            GameObject.Instantiate(m_hitParticlesPrefab, this.transform);
+        }
 
         if (currentHealth <= 0 && alive)
         {

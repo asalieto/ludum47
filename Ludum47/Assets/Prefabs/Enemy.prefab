@@ -147,6 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 3
   currentHealth: 0
+  m_hitParticlesPrefab: {fileID: 7638915461324335407, guid: b95dc74d2f68eed4a8d6bd6464dd8a42, type: 3}
 --- !u!95 &3844100728448984865
 Animator:
   serializedVersion: 3
