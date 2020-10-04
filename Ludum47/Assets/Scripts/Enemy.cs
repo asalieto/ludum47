@@ -66,6 +66,11 @@ public class Enemy : MonoBehaviour
 
     public void ResetEnemy()
     {
+        if (!m_alive)
+        {
+            m_anim.SetTrigger("Respawn");
+        }
+
         m_canShoot = true;
         m_alive = true;
         m_isShooting = false;
@@ -75,7 +80,6 @@ public class Enemy : MonoBehaviour
         GetComponent<HealthManager>().Respawn();
 
         this.gameObject.SetActive(true);
-        m_anim.SetTrigger("Respawn");
         GetComponent<BoxCollider2D>().enabled = true;
     }
 
