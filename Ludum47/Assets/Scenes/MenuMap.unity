@@ -1974,8 +1974,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "It's dunky bunky\n forest, Mr. Catbox!"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 73453f9b7c2ba6641a1b3bd7ab8e2ef1, type: 2}
-  m_sharedMaterial: {fileID: -3200370051606417499, guid: 73453f9b7c2ba6641a1b3bd7ab8e2ef1, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: a0b657db9f9a40647bbd2061f48f4313, type: 2}
+  m_sharedMaterial: {fileID: -3200370051606417499, guid: a0b657db9f9a40647bbd2061f48f4313, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
