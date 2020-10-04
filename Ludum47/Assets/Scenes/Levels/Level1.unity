@@ -1158,7 +1158,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'grab the box using R
+  m_text: 'grab the box using E
 
     and put it on the platform to activate the portal!'
   m_isRightToLeft: 0
