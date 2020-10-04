@@ -402,6 +402,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Portal
       objectReference: {fileID: 0}
+    - target: {fileID: 3760382108512748022, guid: eb02f3e00326b6249a0b4a9ba205b8e8, type: 3}
+      propertyPath: Enemies.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3760382108512748022, guid: eb02f3e00326b6249a0b4a9ba205b8e8, type: 3}
+      propertyPath: RoomSpecificRoot.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3760382108512748022, guid: eb02f3e00326b6249a0b4a9ba205b8e8, type: 3}
+      propertyPath: Combinations.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3760382108512748026, guid: eb02f3e00326b6249a0b4a9ba205b8e8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.49
