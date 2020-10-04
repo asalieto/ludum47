@@ -107,35 +107,32 @@ public class Door : MonoBehaviour
             //FOR CHECKING SWITCHES
             if (Combinations[i].CodeSwitchOpen.Count > 0)
             {
-                for (int combiIter = 0; combiIter < Combinations[i].CodeSwitchOpen.Count; ++combiIter)
+                bool combiValid = true;
+                for (int j = 0; j < Switches.Length; j++)
                 {
-                    bool combiValid = true;
-                    for (int j = 0; j < Switches.Length; j++)
+                    if(Combinations[i].CodeSwitchOpen.Contains(Switches[j].id))
                     {
-                        if(Switches[j].id == Combinations[i].CodeSwitchOpen[combiIter])
+                        if (Switches[j].IsActive())
                         {
-                            if (Switches[j].IsActive())
-                            {
-                                combiValid = true;
-                            }
-                            else
-                            {
-                                combiValid = false;
-                                break;
-                            }
-                        }
-                    }
-
-                    if (combiValid)
-                    {
-                        if (Combinations[i].FinalComb)
-                        {
-                            return -1;
+                            combiValid = true;
                         }
                         else
                         {
-                            return Combinations[i].DoorOpen;
+                            combiValid = false;
+                            break;
                         }
+                    }
+                }
+
+                if (combiValid)
+                {
+                    if (Combinations[i].FinalComb)
+                    {
+                        return -1;
+                    }
+                    else
+                    {
+                        return Combinations[i].DoorOpen;
                     }
                 }
             }
