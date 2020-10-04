@@ -9,10 +9,13 @@ public class Door : MonoBehaviour
     public GameObject[] RoomSpecificRoot; // Default could be option 0
     public DoorCombination[] Combinations;
     public Transform StartPositionTransform;
+    public SpriteRenderer[] m_portalBackgroud;
 
     private int m_currentRoom = 0; 
     private int m_previousRoom = 0;
     private List<int> m_enemiesDieOrdered = new List<int>();
+
+    private Color m_defaultColor;
 
     private void Start()
     {
@@ -21,7 +24,15 @@ public class Door : MonoBehaviour
             Enemies[i].OnDie = OnDieEnemy;
         }
 
+        for (int i = 0; i < Switches.Length; ++i)
+        {
+            Switches[i].OnChangeState = TryChangeColor;
+        }
+
+        m_defaultColor = m_portalBackgroud[0].color;
         GameManager.Instance.CurrentPortal = this;
+
+        TryChangeColor();
     }
 
     public GameObject GetCurrentRoomGO()
@@ -32,6 +43,7 @@ public class Door : MonoBehaviour
     private void OnDieEnemy(int id)
     {
         m_enemiesDieOrdered.Add(id);
+        TryChangeColor();
     }
 
     private void TransportToNextRoom()
@@ -45,6 +57,41 @@ public class Door : MonoBehaviour
         }
 
         m_enemiesDieOrdered.Clear();
+
+        TryChangeColor();
+    }
+
+    private void TryChangeColor()
+    {
+        int nextRoom = CheckNextRoom();
+
+        Color doorColor = GetRoomColor(nextRoom);
+            
+        for (int i = 0; i < m_portalBackgroud.Length; ++i)
+        {
+            doorColor.a = m_defaultColor.a;
+            m_portalBackgroud[i].color = doorColor;
+        }
+    }
+
+    private Color GetRoomColor(int room)
+    {
+        switch (room)
+        {
+            case -1:
+                return Color.yellow;
+            case 1:
+                return Color.green;
+            case 2:
+                return new Color(255.0f/255, 128.0f/255, 0);
+            case 3:
+                return Color.magenta;
+            case 4:   // I think don't exist yet
+                return Color.red;
+            default:
+                return m_defaultColor;
+
+        }
     }
     
     private int CheckNextRoom()

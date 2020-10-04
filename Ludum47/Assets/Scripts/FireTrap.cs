@@ -11,11 +11,9 @@ public class FireTrap : MonoBehaviour
         m_currentInterval = 0;
         m_anim = GetComponent<Animator>();
 
-        switch (m_direction)
+        if(m_direction != Direction.Down)
         {
-            case Direction.Up:
-                m_anim.SetBool("FacingUp", true);
-                break;
+            m_anim.SetBool("FacingUp", true);
         }
     }
 
@@ -37,12 +35,16 @@ public class FireTrap : MonoBehaviour
         Vector2 vector = GetDirectionVector();
         float angle = Mathf.Atan2(vector.x, vector.y) * Mathf.Rad2Deg;
         
-        if(angle >= 180)
+        if(m_direction == Direction.Up || m_direction == Direction.Down)
         {
-
+            angle = angle + 90;
+        }
+        else
+        {
+            angle = angle - 90;
         }
 
-        var bullet = Instantiate(m_bulletPrefab, transform.position + new Vector3(vector.x, vector.y, 0) * m_bulletSeparationMultiplier, Quaternion.AngleAxis(angle + 90, Vector3.forward));
+        var bullet = Instantiate(m_bulletPrefab, transform.position + new Vector3(vector.x, vector.y, 0) * m_bulletSeparationMultiplier, Quaternion.AngleAxis(angle, Vector3.forward));
         bullet.GetComponent<Bullet>().Init(vector.normalized);
 
         m_anim.SetTrigger("Shoot");
