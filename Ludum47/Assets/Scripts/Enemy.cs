@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
 
     private GameObject m_player;
     private Vector2 m_originPos;
-    private bool m_alive;
+    private bool m_alive = true;
     private Animator m_anim;
 
     private float m_waypointRadius = 0.15f;
