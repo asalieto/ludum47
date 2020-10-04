@@ -9,6 +9,8 @@ public class GrabItems : MonoBehaviour
     GameObject overlappingItem = null;
     Animator playerAnim;
     KeyCode grabItemKey = KeyCode.E;
+    [SerializeField]
+    float grabOffset = 0.1f;
 
     private void Start()
     {
@@ -17,6 +19,7 @@ public class GrabItems : MonoBehaviour
 
     void Update()
     {
+
         if(overlappingItem != null && heldItem == null)
         {
             if (Input.GetKeyDown(grabItemKey))
@@ -32,7 +35,8 @@ public class GrabItems : MonoBehaviour
         }
         else if (heldItem != null)
         {
-            heldItem.transform.position = transform.position;
+            heldItem.transform.position = new Vector3(transform.position.x, transform.position.y + grabOffset, transform.position.z);
+
             if (Input.GetKeyDown(grabItemKey))
             {
                 var currentRoomTransform = GameManager.Instance.CurrentPortal.GetCurrentRoomGO().transform;
