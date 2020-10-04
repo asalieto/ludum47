@@ -103,6 +103,33 @@ public class Door : MonoBehaviour
                     }
                 }
             }
+            else if (Combinations[i].NeedOtherAlive)
+            {
+                bool combiValid = true;
+                for (int enemyIter = 0; enemyIter < Enemies.Length; ++enemyIter)
+                {
+                    if (!Enemies[enemyIter].IsAlive())
+                    {
+                        combiValid = false;
+                        break;
+                    }
+                }
+
+                if (!combiValid)
+                {
+                    break;
+                }
+
+                if (Combinations[i].FinalComb)
+                {
+                    return -1;
+                }
+                else
+                {
+                    return Combinations[i].DoorOpen;
+                }
+            }
+
 
             //FOR CHECKING SWITCHES
             if (Combinations[i].CodeSwitchOpen.Count > 0)
@@ -137,7 +164,7 @@ public class Door : MonoBehaviour
                 }
             }
 
-            if(Combinations[i].CodeOpen.Count == 0 && Combinations[i].CodeSwitchOpen.Count == 0)
+            if(Combinations[i].CodeOpen.Count == 0 && Combinations[i].CodeSwitchOpen.Count == 0 && Combinations[i].FinalComb)
             {
                 return -1;
             }
