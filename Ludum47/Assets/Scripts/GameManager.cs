@@ -8,6 +8,8 @@ public class GameManager : Singleton<GameManager>
     private int m_currentLevel = 0;
     private List<int> m_checkPoints;
 
+    private const int MAX_LEVEL = 10; 
+
     private void Start()
     {
         // Create check point list
@@ -24,6 +26,13 @@ public class GameManager : Singleton<GameManager>
     public void LoadNextLevel()
     {
         m_currentLevel++;
+
+        if(m_currentLevel > MAX_LEVEL)
+        {
+            SceneManager.LoadScene("MenuMap", LoadSceneMode.Single);
+            return;
+        }
+
         SceneManager.LoadScene("Level" + m_currentLevel.ToString(), LoadSceneMode.Single);
     }
 
