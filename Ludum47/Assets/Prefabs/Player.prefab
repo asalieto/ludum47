@@ -191,7 +191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HoldingItem: 0
-  grabOffset: 0.3
+  grabOffset: 0.4
 --- !u!114 &2158905083710667924
 MonoBehaviour:
   m_ObjectHideFlags: 0

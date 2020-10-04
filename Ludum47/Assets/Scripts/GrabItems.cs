@@ -32,6 +32,7 @@ public class GrabItems : MonoBehaviour
                 AudioManager.Instance.PlaySFX(AudioManager.SFXType.Pickup, true);
 
                 heldItem.transform.SetParent(transform);
+                heldItem.GetComponentsInChildren<SpriteRenderer>()[2].sortingOrder = 3;
                 playerAnim.SetTrigger("Grab");
 
                 HoldingItem = true;
@@ -65,6 +66,7 @@ public class GrabItems : MonoBehaviour
                 heldItem.transform.SetParent(currentRoomTransform);
 
                 heldItem.GetComponent<Collider2D>().enabled = true;
+                heldItem.GetComponentsInChildren<SpriteRenderer>()[2].sortingOrder = 1;
                 heldItem = null;
                 playerAnim.SetTrigger("Grab");
 
