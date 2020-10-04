@@ -6,7 +6,6 @@ public class OverlapDetector : MonoBehaviour
 {
 
     bool active = false;
-    int overlappingElements = 0;
     public int id = 0;
 
     public bool IsActive()
@@ -24,26 +23,23 @@ public class OverlapDetector : MonoBehaviour
         {
             if(collision.gameObject.GetComponent<ObjectID>().id == id)
             {
-                overlappingElements++;
-                if (overlappingElements > 0)
-                {
-                    active = true;
-                }
+                active = true;
             }
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if(!gameObject.activeInHierarchy)
+        {
+            return;
+        }
+
         if (!collision.isTrigger && collision.gameObject.tag == "ObjectGrab")
         {
             if (collision.gameObject.GetComponent<ObjectID>().id == id)
             {
-                overlappingElements--;
-                if (overlappingElements <= 0)
-                {
-                    active = false;
-                }
+                active = false;
             }
         }
     }

@@ -39,6 +39,8 @@ public class Enemy : MonoBehaviour
             transform.position = m_waypoints[m_destinationIndex].position;
         }
 
+        m_originPos = transform.position;
+
         m_player = GameObject.FindGameObjectWithTag("Player");
         this.gameObject.SetActive(true);
     }
@@ -63,6 +65,7 @@ public class Enemy : MonoBehaviour
         m_alive = true;
         m_isShooting = false;
         transform.position = m_originPos;
+        m_destinationIndex = 0;
 
         GetComponent<HealthManager>().Respawn();
 
