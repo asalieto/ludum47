@@ -190,6 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db505666ee39bb743900c26ef293dfb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HoldingItem: 0
   grabOffset: 0.3
 --- !u!114 &2158905083710667924
 MonoBehaviour:
@@ -206,6 +207,8 @@ MonoBehaviour:
   maxHealth: 3
   currentHealth: 0
   m_hitParticlesPrefab: {fileID: 0}
+  m_damagedColor: {r: 0.6901961, g: 0.21960784, b: 0.21960784, a: 1}
+  m_colorDamageDuration: 0.3
 --- !u!95 &7912354477783516745
 Animator:
   serializedVersion: 3
