@@ -910,8 +910,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -27.78}
-  m_SizeDelta: {x: 576.85657, y: 185.98553}
+  m_AnchoredPosition: {x: 8, y: -10}
+  m_SizeDelta: {x: 381.46167, y: 240.74591}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &71381051
 MonoBehaviour:
@@ -933,8 +933,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Programasi\xF3n\nIsidro Jos\xE9 Rodriguez - Adri\xE1n Ort\xEDz - Alberto
-    Salieto\n\nHelarte\nMacarena Vizuete"
+  m_text: "PROGRAMMING\nIsidro Jose Rodriguez\nAdri\xE0 Ortiz \nAlberto Salieto G\xF3mez\n\n\nART\nMacarena
+    Vizuete"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 73453f9b7c2ba6641a1b3bd7ab8e2ef1, type: 2}
   m_sharedMaterial: {fileID: -3200370051606417499, guid: 73453f9b7c2ba6641a1b3bd7ab8e2ef1, type: 2}
@@ -1949,8 +1949,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 121.1}
-  m_SizeDelta: {x: 346.12976, y: 98.30969}
+  m_AnchoredPosition: {x: -24.4, y: 125.5}
+  m_SizeDelta: {x: 306.2318, y: 111.60899}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &517966598
 MonoBehaviour:
