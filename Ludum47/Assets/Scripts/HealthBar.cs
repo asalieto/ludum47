@@ -1,20 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class HealthBar : MonoBehaviour
 {
-
     [SerializeField]
     private GameObject heart = null;
 
     private GameObject[] heartArray;
-
     private HealthManager playerHM;
-
     private int lastHealth;
 
-    // Start is called before the first frame update
     void Start()
     {
         playerHM = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthManager>();
@@ -22,18 +16,12 @@ public class HealthBar : MonoBehaviour
 
         for (int i = 0; i < playerHM.maxHealth; i++)
         {
-            heartArray[i] = Instantiate(heart);
-            heartArray[i].transform.SetParent(transform);
-            heartArray[i].GetComponent<RectTransform>().anchoredPosition = new Vector2(i * heartArray[i].GetComponent<RectTransform>().rect.width, 0);
+            heartArray[i] = Instantiate(heart, this.transform);
         }
-
-        GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,
-                                                                heartArray[0].GetComponent<RectTransform>().rect.width* playerHM.maxHealth);
 
         lastHealth = playerHM.maxHealth;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(lastHealth != playerHM.currentHealth)
