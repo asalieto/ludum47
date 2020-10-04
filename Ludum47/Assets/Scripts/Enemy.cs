@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour
         m_isShooting = false;
         OnDie?.Invoke(EnemyID);
 
-        m_anim.SetBool("Dead", true);
+        m_anim.SetTrigger("Dead");
         GetComponent<BoxCollider2D>().enabled = false;
 
         //this.gameObject.SetActive(false);
@@ -75,12 +75,15 @@ public class Enemy : MonoBehaviour
         GetComponent<HealthManager>().Respawn();
 
         this.gameObject.SetActive(true);
-        m_anim.SetBool("Dead", false);
+        m_anim.SetTrigger("Dead");
         GetComponent<BoxCollider2D>().enabled = true;
     }
 
     private void Update()
     {
+
+        Debug.Log(m_anim.speed);
+
         if (m_alive && m_waypoints != null && m_waypoints.Count > 0 && !m_isShooting)
         {
             Move();
