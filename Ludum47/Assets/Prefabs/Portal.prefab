@@ -316,6 +316,9 @@ MonoBehaviour:
   - {fileID: 3760382108879747061}
   - {fileID: 3760382108528403672}
   StartPositionTransform: {fileID: 0}
+  m_portalBackgroud:
+  - {fileID: 6201115760931188592}
+  - {fileID: 5749768194674116229}
 --- !u!1 &3760382108528403675
 GameObject:
   m_ObjectHideFlags: 0
