@@ -1568,7 +1568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3760382108528403672, guid: eb02f3e00326b6249a0b4a9ba205b8e8, type: 3}
       propertyPath: CodeSwitchOpen.Array.data[0]
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3760382108528403672, guid: eb02f3e00326b6249a0b4a9ba205b8e8, type: 3}
       propertyPath: FinalComb
