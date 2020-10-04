@@ -53,7 +53,8 @@ public class Enemy : MonoBehaviour
         m_isShooting = false;
         OnDie?.Invoke(EnemyID);
 
-        m_anim.SetTrigger("Death");
+        m_anim.SetBool("Dead", true);
+        GetComponent<BoxCollider2D>().enabled = false;
 
         //this.gameObject.SetActive(false);
     }
@@ -74,6 +75,8 @@ public class Enemy : MonoBehaviour
         GetComponent<HealthManager>().Respawn();
 
         this.gameObject.SetActive(true);
+        m_anim.SetBool("Dead", false);
+        GetComponent<BoxCollider2D>().enabled = true;
     }
 
     private void Update()
@@ -200,7 +203,8 @@ public class Enemy : MonoBehaviour
     {
         AudioManager.Instance.PlaySFX(AudioManager.SFXType.Projectile);
 
-        GameObject bullet = GameObject.Instantiate(m_bulletPrefab, this.transform.position + (transform.up * m_bulletSeparationMultiplier), Quaternion.identity);
+        GameObject bullet = GameObject.Instantiate(m_bulletPrefab, this.transform.position + (transform.up * m_bulletSeparationMultiplier),
+            Quaternion.FromToRotation(Vector3.up, m_player.transform.position - transform.position));
         bullet.GetComponent<Bullet>().Init((m_player.transform.position - transform.position).normalized);
 
         m_anim.SetTrigger("Shoot");
