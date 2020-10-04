@@ -1888,7 +1888,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "It' dunky bunky\n forest, Mr. Cat!"
+  m_text: "It's dunky bunky\n forest, Mr. Catbox!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 73453f9b7c2ba6641a1b3bd7ab8e2ef1, type: 2}
   m_sharedMaterial: {fileID: -3200370051606417499, guid: 73453f9b7c2ba6641a1b3bd7ab8e2ef1, type: 2}
@@ -4951,7 +4951,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 191.9, y: 88.8}
+  m_AnchoredPosition: {x: 232.03, y: 71.964}
   m_SizeDelta: {x: 117.93005, y: 143.92859}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2083446709
