@@ -75,7 +75,7 @@ public class Enemy : MonoBehaviour
         GetComponent<HealthManager>().Respawn();
 
         this.gameObject.SetActive(true);
-        m_anim.SetTrigger("Dead");
+        m_anim.SetTrigger("Respawn");
         GetComponent<BoxCollider2D>().enabled = true;
     }
 
