@@ -55,8 +55,6 @@ public class Enemy : MonoBehaviour
 
         m_anim.SetTrigger("Dead");
         GetComponent<BoxCollider2D>().enabled = false;
-
-        //this.gameObject.SetActive(false);
     }
 
     public bool IsAlive()
@@ -170,7 +168,7 @@ public class Enemy : MonoBehaviour
                 m_isShooting = true;
                 Shoot();
 
-                StartCoroutine("ShootDelay");
+                StartCoroutine(ShootDelay());
             }
             else
             {

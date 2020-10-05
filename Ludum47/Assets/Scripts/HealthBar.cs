@@ -35,7 +35,5 @@ public class HealthBar : MonoBehaviour
                 }
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.P)) playerHM.receiveDamage(1);
     }
 }

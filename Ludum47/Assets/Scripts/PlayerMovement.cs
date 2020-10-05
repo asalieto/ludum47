@@ -1,21 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5f;
-
-    private Rigidbody2D playerRB;
-    private HealthManager playerHM;
-    private Animator PlayerAnim;
-    private GrabItems grabItems;
-
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
         playerHM = GetComponent<HealthManager>();
-        PlayerAnim = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         grabItems = GetComponent<GrabItems>();
     }
 
@@ -23,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Vector2 auxVel = new Vector2(0.0f, 0.0f);
 
-        if (playerHM.isAlive())
+        if (playerHM.IsAlive)
         {
             if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
             {
@@ -44,12 +35,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         playerRB.velocity = auxVel;
-        PlayerAnim.SetFloat("SpeedX", auxVel.x);
-        PlayerAnim.SetFloat("SpeedY", auxVel.y);
-
-        /*transform.position.Set(transform.position.x + auxVel.x * Time.deltaTime,
-                               transform.position.y + auxVel.y * Time.deltaTime,
-                               transform.position.z);*/
+        animator.SetFloat("SpeedX", auxVel.x);
+        animator.SetFloat("SpeedY", auxVel.y);
 
         if(playerRB.velocity.magnitude != 0f)
         {
@@ -57,7 +44,6 @@ public class PlayerMovement : MonoBehaviour
             m_lastVelocityDirection.Normalize();
 
             angle = Mathf.Atan2(playerRB.velocity.y, playerRB.velocity.x) * Mathf.Rad2Deg;
-            //transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
 
         m_currentBulletInterval += Time.deltaTime;
@@ -78,9 +64,15 @@ public class PlayerMovement : MonoBehaviour
 
         var bullet = Instantiate(m_bulletPrefab, transform.position + new Vector3(m_lastVelocityDirection.x, m_lastVelocityDirection.y, 0) * m_bulletSeparationMultiplier, Quaternion.AngleAxis(angle, Vector3.forward));
         bullet.GetComponent<Bullet>().Init(m_lastVelocityDirection.normalized);
-        PlayerAnim.SetTrigger("Shoot");
+        animator.SetTrigger("Shoot");
     }
 
+    public float speed = 5f;
+
+    private Rigidbody2D playerRB;
+    private HealthManager playerHM;
+    private Animator animator;
+    private GrabItems grabItems;
     private Vector2 m_lastVelocityDirection = Vector2.down;
     private float angle = 0;
     private float m_currentBulletInterval = 0f;
