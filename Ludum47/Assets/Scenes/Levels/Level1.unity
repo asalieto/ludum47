@@ -6736,18 +6736,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4662242838190239832, guid: 6d4be4de942619d489844b1605d6aab5, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4662242838190239832, guid: 6d4be4de942619d489844b1605d6aab5, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4662242838190239835, guid: 6d4be4de942619d489844b1605d6aab5, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7605366896620434515, guid: 5e013bd6791817b48941c6d6c8f57be8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.5
@@ -6807,6 +6795,18 @@ PrefabInstance:
     - target: {fileID: 7605366896620434517, guid: 5e013bd6791817b48941c6d6c8f57be8, type: 3}
       propertyPath: m_Name
       value: ObjectGrab_Blue
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662242838190239832, guid: 6d4be4de942619d489844b1605d6aab5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662242838190239832, guid: 6d4be4de942619d489844b1605d6aab5, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4662242838190239835, guid: 6d4be4de942619d489844b1605d6aab5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e013bd6791817b48941c6d6c8f57be8, type: 3}
@@ -8034,8 +8034,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.661, y: -0.07}
-  m_SizeDelta: {x: 1.724608, y: 1.4025747}
+  m_AnchoredPosition: {x: -1.68, y: 0.16}
+  m_SizeDelta: {x: 1.724608, y: 1.6309427}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1467086759
 MonoBehaviour:
@@ -8057,7 +8057,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: use E to grab and drop the box! switches can redirect portals!
+  m_text: "use E to grab and drop the box on the platform! \nswitches can redirect
+    portals!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 73453f9b7c2ba6641a1b3bd7ab8e2ef1, type: 2}
   m_sharedMaterial: {fileID: -3200370051606417499, guid: 73453f9b7c2ba6641a1b3bd7ab8e2ef1, type: 2}
