@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
+    public Joystick Joystick { get; set; }
     public Door CurrentPortal { get; set; }
 
     private int m_currentLevel = 0;

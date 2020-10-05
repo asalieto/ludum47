@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GrabItems : MonoBehaviour
 {
@@ -23,20 +21,11 @@ public class GrabItems : MonoBehaviour
 
     void Update()
     {
-        if(overlappingItem != null && heldItem == null)
+        if (overlappingItem != null && heldItem == null)
         {
             if (Input.GetKeyDown(grabItemKey))
             {
-                heldItem = overlappingItem;
-                heldItem.GetComponent<Collider2D>().enabled = false;
-                AudioManager.Instance.PlaySFX(AudioManager.SFXType.Pickup, true);
-
-                heldItem.transform.SetParent(transform);
-                heldItem.GetComponentsInChildren<SpriteRenderer>()[1].sortingOrder = 5;
-                heldItem.GetComponentsInChildren<SpriteRenderer>()[2].sortingOrder = 5;
-                playerAnim.SetTrigger("Grab");
-
-                HoldingItem = true;
+                Grab();
             }
         }
         else if (heldItem != null)
@@ -45,38 +34,69 @@ public class GrabItems : MonoBehaviour
 
             if (Input.GetKeyDown(grabItemKey))
             {
-                switch (playerAnim.GetCurrentAnimatorClipInfo(0)[0].clip.name)
-                {
-                    case "Player_CarryDown":
-                    case "Player_IdleCarryDown":
-                        heldItem.transform.position = new Vector3(transform.position.x, transform.position.y - grabOffset, transform.position.z);
-                        break;
-                    case "Player_CarryLeft":
-                    case "Player_IdleCarryLeft":
-                        heldItem.transform.position = new Vector3(transform.position.x - grabOffset, transform.position.y, transform.position.z);
-                        break;
-                    case "Player_CarryRight":
-                    case "Player_IdleCarryRight":
-                        heldItem.transform.position = new Vector3(transform.position.x + grabOffset, transform.position.y, transform.position.z);
-                        break;
-                    default:
-                        break;
-                }
-
-                var currentRoomTransform = GameManager.Instance.CurrentPortal.GetCurrentRoomGO().transform;
-                heldItem.transform.SetParent(currentRoomTransform);
-
-                heldItem.GetComponent<Collider2D>().enabled = true;
-                heldItem.GetComponentsInChildren<SpriteRenderer>()[1].sortingOrder = 3;
-                heldItem.GetComponentsInChildren<SpriteRenderer>()[2].sortingOrder = 1;
-                heldItem = null;
-                playerAnim.SetTrigger("Grab");
-
-                HoldingItem = false;
-
-                AudioManager.Instance.PlaySFX(AudioManager.SFXType.Cat, true);
+                Drop();
             }
         }
+    }
+
+    public void TryGrabOrUse()
+    {
+        if (overlappingItem != null && heldItem == null)
+        {
+            Grab();
+        }
+        else if (heldItem != null)
+        {
+            Drop();
+        }
+    }
+
+    private void Grab()
+    {
+        heldItem = overlappingItem;
+        heldItem.GetComponent<Collider2D>().enabled = false;
+        AudioManager.Instance.PlaySFX(AudioManager.SFXType.Pickup, true);
+
+        heldItem.transform.SetParent(transform);
+        heldItem.GetComponentsInChildren<SpriteRenderer>()[1].sortingOrder = 5;
+        heldItem.GetComponentsInChildren<SpriteRenderer>()[2].sortingOrder = 5;
+        playerAnim.SetTrigger("Grab");
+
+        HoldingItem = true;
+    }
+
+    private void Drop()
+    {
+        switch (playerAnim.GetCurrentAnimatorClipInfo(0)[0].clip.name)
+        {
+            case "Player_CarryDown":
+            case "Player_IdleCarryDown":
+                heldItem.transform.position = new Vector3(transform.position.x, transform.position.y - grabOffset, transform.position.z);
+                break;
+            case "Player_CarryLeft":
+            case "Player_IdleCarryLeft":
+                heldItem.transform.position = new Vector3(transform.position.x - grabOffset, transform.position.y, transform.position.z);
+                break;
+            case "Player_CarryRight":
+            case "Player_IdleCarryRight":
+                heldItem.transform.position = new Vector3(transform.position.x + grabOffset, transform.position.y, transform.position.z);
+                break;
+            default:
+                break;
+        }
+
+        var currentRoomTransform = GameManager.Instance.CurrentPortal.GetCurrentRoomGO().transform;
+        heldItem.transform.SetParent(currentRoomTransform);
+
+        heldItem.GetComponent<Collider2D>().enabled = true;
+        heldItem.GetComponentsInChildren<SpriteRenderer>()[1].sortingOrder = 3;
+        heldItem.GetComponentsInChildren<SpriteRenderer>()[2].sortingOrder = 1;
+        heldItem = null;
+        playerAnim.SetTrigger("Grab");
+
+        HoldingItem = false;
+
+        AudioManager.Instance.PlaySFX(AudioManager.SFXType.Cat, true);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

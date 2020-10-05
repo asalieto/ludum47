@@ -233,6 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1.7
+  m_useJoystick: 0
   m_bulletPrefab: {fileID: 6862636990602757244, guid: 8416b56ce89e2374394e80559d024551, type: 3}
   m_bulletInterval: 0.2
   m_bulletSeparationMultiplier: 0.02

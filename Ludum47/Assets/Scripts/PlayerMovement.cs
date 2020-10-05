@@ -16,21 +16,28 @@ public class PlayerMovement : MonoBehaviour
 
         if (playerHM.IsAlive)
         {
-            if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+            if (!m_useJoystick)
             {
-                auxVel.y += speed;
+                if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+                {
+                    auxVel.y += speed;
+                }
+                if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+                {
+                    auxVel.y -= speed;
+                }
+                if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+                {
+                    auxVel.x += speed;
+                }
+                if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+                {
+                    auxVel.x -= speed;
+                }
             }
-            if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+            else
             {
-                auxVel.y -= speed;
-            }
-            if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-            {
-                auxVel.x += speed;
-            }
-            if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
-            {
-                auxVel.x -= speed;
+                auxVel = GameManager.Instance.Joystick.Direction * speed;
             }
         }
 
@@ -50,11 +57,16 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.Space))
         {
-            if(m_currentBulletInterval > m_bulletInterval && !grabItems.HoldingItem)
-            {
-                Shoot();
-                m_currentBulletInterval = 0f;
-            }
+            TryShoot();
+        }
+    }
+
+    public void TryShoot()
+    {
+        if (m_currentBulletInterval > m_bulletInterval && !grabItems.HoldingItem)
+        {
+            Shoot();
+            m_currentBulletInterval = 0f;
         }
     }
 
@@ -77,6 +89,8 @@ public class PlayerMovement : MonoBehaviour
     private float angle = 0;
     private float m_currentBulletInterval = 0f;
 
+    [SerializeField]
+    private bool m_useJoystick = false;
     [SerializeField]
     private GameObject m_bulletPrefab = null;
     [SerializeField]
