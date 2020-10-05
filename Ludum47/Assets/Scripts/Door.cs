@@ -85,7 +85,7 @@ public class Door : MonoBehaviour
             case 1:
                 return Color.green;
             case 2:
-                return new Color(255.0f/255, 128.0f/255, 0);
+                return Color.cyan;
             case 3:
                 return Color.magenta;
             case 4:   // I think don't exist yet
