@@ -41,11 +41,11 @@ public class Bullet : MonoBehaviour
 
         if (m_isEnemyBullet)
         {
-            if (collision.CompareTag("Player"))
+            if (collision.CompareTag("CatHeart"))
             {
                 m_isAlive = false;
                 AudioManager.Instance.PlaySFX(AudioManager.SFXType.Hit);
-                collision.gameObject.GetComponent<HealthManager>().receiveDamage(1);
+                collision.transform.parent.gameObject.GetComponent<HealthManager>().receiveDamage(1);
                 DestroyBullet();
             }
         }
