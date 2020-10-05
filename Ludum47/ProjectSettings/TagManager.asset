@@ -8,6 +8,7 @@ TagManager:
   - Obstacle
   - ObjectGrab
   - Bullet
+  - CatHeart
   layers:
   - Default
   - TransparentFX
