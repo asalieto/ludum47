@@ -5,6 +5,11 @@ public class MenuMapScript : MonoBehaviour
 {
     private void Start()
     {
+        if(Application.platform != RuntimePlatform.WindowsPlayer)
+        {
+            m_exitGO.SetActive(false);
+        }
+
         OpenMainMenu();
     }
 
@@ -33,6 +38,11 @@ public class MenuMapScript : MonoBehaviour
         m_creditsGO.SetActive(true);
     }
 
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
+
     [SerializeField]
     private string m_initialLevel;
 
@@ -42,4 +52,6 @@ public class MenuMapScript : MonoBehaviour
     private GameObject m_levelSelectGO;
     [SerializeField]
     private GameObject m_creditsGO;
+    [SerializeField]
+    private GameObject m_exitGO;
 }
