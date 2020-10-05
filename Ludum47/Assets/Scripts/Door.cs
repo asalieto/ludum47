@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Door : MonoBehaviour
@@ -179,7 +178,6 @@ public class Door : MonoBehaviour
                 }
             }
 
-
             //FOR CHECKING SWITCHES
             if (Combinations[i].CodeSwitchOpen.Count > 0)
             {
@@ -246,12 +244,10 @@ public class Door : MonoBehaviour
 
         if (m_currentRoom == -1)
         {
-            //Level win
             GameManager.Instance.LoadNextLevel();
         }
         else
         {
-            //This should be done on the player
             playerGO.gameObject.transform.position = StartPositionTransform.position;
             TransportToNextRoom();
         }

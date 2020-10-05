@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class HealthManager : MonoBehaviour
 {
+    public bool IsAlive => alive;
+
     public int maxHealth = 3;
     public int currentHealth;
 
@@ -34,11 +36,6 @@ public class HealthManager : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public bool isAlive()
-    {
-        return alive;
-    }
-
     public void receiveDamage(int damage)
     {
         currentHealth -= damage;
@@ -54,14 +51,12 @@ public class HealthManager : MonoBehaviour
         {
             if(tag == "Player")
             {
-                Debug.Log("Player Dead!");
                 GameObject GameOver = (GameObject)Resources.Load("GameOverCanvas");
                 GameObject.Instantiate(GameOver);
             }
             else
             {
                 GetComponent<Enemy>().Die();
-                Debug.Log("Enemy Dead!");
             }
 
             alive = false;

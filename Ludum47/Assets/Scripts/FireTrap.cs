@@ -1,11 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class FireTrap : MonoBehaviour
 {
-    private Animator m_anim;
-
     void Start()
     {
         m_currentInterval = 0;
@@ -50,6 +46,7 @@ public class FireTrap : MonoBehaviour
         m_anim.SetTrigger("Shoot");
     }
 
+    private Animator m_anim;
     private float m_currentInterval = 0f;
 
     [SerializeField]
